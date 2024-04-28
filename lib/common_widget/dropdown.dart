@@ -24,7 +24,7 @@ class Dropdown extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
               color: TColor.textTittle,
               fontSize: 16,
               fontWeight: FontWeight.w600),
@@ -34,14 +34,14 @@ class Dropdown extends StatelessWidget {
           child: DropdownButtonHideUnderline(
             child: DropdownButton(
                 onChanged: didChange,
-                icon: Icon(
+                icon: const Icon(
                   Icons.expand_more,
                   color: TColor.textTittle,
                 ),
                 value: selectValue,
                 hint: Text(
                   placeholder,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: TColor.placeholder,
                       fontSize: 16,
                       fontWeight: FontWeight.w600),
@@ -52,7 +52,7 @@ class Dropdown extends StatelessWidget {
                       value: obj,
                       child: Text(
                         obj.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: TColor.primaryText,
                             fontSize: 16,
                             fontWeight: FontWeight.w600),

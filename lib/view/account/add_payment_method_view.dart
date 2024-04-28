@@ -39,7 +39,7 @@ class _AddPaymentMethodViewState extends State<AddPaymentMethodView> {
               height: 20,
             )),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Add Payment Method",
           style: TextStyle(
               color: TColor.primaryText,

@@ -1,11 +1,8 @@
 import 'dart:io';
 
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:shop_app/view/main_tabview/main_tabview.dart';
 import 'package:shop_app/view/splash_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

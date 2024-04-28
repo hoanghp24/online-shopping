@@ -56,8 +56,8 @@ class _SignInViewState extends State<SignInView> {
                 SizedBox(
                   height: media.width * 0.7,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -160,7 +160,7 @@ class _SignInViewState extends State<SignInView> {
                 const SizedBox(
                   height: 25,
                 ),
-                Text(
+                const Text(
                   "Or connect with social media",
                   style: TextStyle(
                       color: TColor.secondaryText,
@@ -175,7 +175,7 @@ class _SignInViewState extends State<SignInView> {
                   child: RoundIconButton(
                     title: "Continue with Google",
                     icon: "assets/img/google_logo.png",
-                    bgColor: Color(0xff5383EC),
+                    bgColor: const Color(0xff5383EC),
                     onPressed: () {
                       Navigator.push(
                           context,
@@ -192,7 +192,7 @@ class _SignInViewState extends State<SignInView> {
                   child: RoundIconButton(
                     title: "Continue with Facebook",
                     icon: "assets/img/fb_logo.png",
-                    bgColor: Color(0xff4A66AC),
+                    bgColor: const Color(0xff4A66AC),
                     onPressed: () {},
                   ),
                 ),

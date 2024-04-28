@@ -42,7 +42,7 @@ class ErrorView extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          Text(
+          const Text(
             "Oops! Order Failed",
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -53,7 +53,7 @@ class ErrorView extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
+          const Text(
             "Something went tembly wrong.",
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -70,7 +70,7 @@ class ErrorView extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text(
+            child: const Text(
               "Back to home",
               textAlign: TextAlign.left,
               style: TextStyle(

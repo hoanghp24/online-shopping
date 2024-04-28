@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shop_app/view/login/select_location_view.dart';
 
 import '../../common/color_extension.dart';
 import '../../common_widget/line_textfield.dart';
@@ -50,8 +49,8 @@ class _VerificationViewState extends State<VerificationView> {
                   SizedBox(
                     height: media.width * 0.1,
                   ),
-                  Text(
-                    "Enter your 4-digit code",
+                  const Text(
+                    "Nhập mã gồm 4 chữ số",
                     style: TextStyle(
                         color: TColor.primaryText,
                         fontSize: 26,
@@ -61,7 +60,7 @@ class _VerificationViewState extends State<VerificationView> {
                     height: 15,
                   ),
                   LineTextField(
-                      title: "Code",
+                      title: "Mã",
                       placeholder: " - - - -",
                       controller: forgotVM.txtResetCode.value),
                   SizedBox(
@@ -74,8 +73,8 @@ class _VerificationViewState extends State<VerificationView> {
                           onPressed: () {
                             forgotVM.serviceCallRequest(isResend: true);
                           },
-                          child: Text(
-                            "Resend Code",
+                          child: const Text(
+                            "Gửi lại mã",
                             style: TextStyle(
                                 color: TColor.primary,
                                 fontSize: 18,

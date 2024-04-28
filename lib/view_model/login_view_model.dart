@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/common/globs.dart';
 import 'package:shop_app/common/service_call.dart';
-import 'package:shop_app/view/main_tabview/main_tabview.dart';
 import 'package:shop_app/view_model/splash_view_model.dart';
 
 class LoginViewModel extends GetxController {

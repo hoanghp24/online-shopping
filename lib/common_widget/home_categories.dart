@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/common_widget/rounded_image.dart';
 import 'package:shop_app/model/explore_category_model.dart';
-import 'package:shop_app/model/type_model.dart';
 
 class HomeCategories extends StatelessWidget {
   const HomeCategories({

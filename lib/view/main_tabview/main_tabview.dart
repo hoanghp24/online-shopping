@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
@@ -8,7 +7,6 @@ import 'package:shop_app/view/home/home_view.dart';
 import '../../common/color_extension.dart';
 import '../../view_model/favourite_view_model.dart';
 import '../account/account_view.dart';
-import '../explore/explore_view.dart';
 import '../favourite/favourite_view.dart';
 import '../my_cart/my_cart_view.dart';
 

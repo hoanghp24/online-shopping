@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +9,6 @@ import 'package:shop_app/view_model/cart_view_model.dart';
 import 'package:shop_app/view_model/home_view_model.dart';
 
 import '../../common/color_extension.dart';
-import '../../model/offer_product_model.dart';
 import 'filter_view.dart';
 
 class SearchView extends StatefulWidget {

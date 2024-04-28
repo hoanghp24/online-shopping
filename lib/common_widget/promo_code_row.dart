@@ -32,7 +32,7 @@ class PromoCodeRow extends StatelessWidget {
                         Expanded(
                           child: Text(
                             pObj.title ?? "",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: TColor.primaryText,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700),
@@ -46,7 +46,7 @@ class PromoCodeRow extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5)),
                           child: Text(
                             pObj.code ?? "",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: TColor.primary,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w700),
@@ -59,7 +59,7 @@ class PromoCodeRow extends StatelessWidget {
                     ),
                     Text(
                       pObj.description ?? "",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: TColor.secondaryText,
                           fontSize: 14,
                           fontWeight: FontWeight.w500),
@@ -71,7 +71,7 @@ class PromoCodeRow extends StatelessWidget {
     
                     Row(
                       children: [
-                        Text(
+                        const Text(
                          "Expiry Date:",
                           style: TextStyle(
                               color: TColor.primary,
@@ -82,7 +82,7 @@ class PromoCodeRow extends StatelessWidget {
                         const SizedBox(width: 8,),
                         Text(
                           pObj.endDate ?? "",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: TColor.secondaryText,
                               fontSize: 12,
                               fontWeight: FontWeight.w500),

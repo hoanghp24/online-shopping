@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/common_widget/product_cell.dart';
-import 'package:shop_app/common_widget/round_button.dart';
 import 'package:shop_app/view/home/product_details_view.dart';
 import 'package:shop_app/view_model/cart_view_model.dart';
 
 import '../../common/color_extension.dart';
-import '../../common_widget/favourite_row.dart';
 import '../../view_model/favourite_view_model.dart';
 
 class FavoritesView extends StatefulWidget {

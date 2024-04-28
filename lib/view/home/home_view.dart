@@ -3,15 +3,12 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shop_app/common_widget/home_categories.dart';
 import 'package:shop_app/common_widget/promo_slider.dart';
-import 'package:shop_app/model/offer_product_model.dart';
 import 'package:shop_app/view/explore/explore_detail_view.dart';
-import 'package:shop_app/view/explore/explore_view.dart';
 import 'package:shop_app/view/explore/search_view.dart';
 import 'package:shop_app/view/home/product_details_view.dart';
 import 'package:shop_app/view_model/explore_view_model.dart';
 
 import '../../common/color_extension.dart';
-import '../../common_widget/category_cell.dart';
 import '../../common_widget/product_cell.dart';
 import '../../common_widget/section_view.dart';
 import '../../view_model/cart_view_model.dart';

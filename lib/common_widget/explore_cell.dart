@@ -45,7 +45,7 @@ class ExploreCell extends StatelessWidget {
             Text(
               pObj.catName ?? "",
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   color: TColor.primaryText,
                   fontSize: 16,
                   fontWeight: FontWeight.w700),

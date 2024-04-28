@@ -45,7 +45,7 @@ class PaymentMethodRow extends StatelessWidget {
                     Text(
                       pObj.name ?? "",
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: TColor.primaryText,
                           fontSize: 18,
                           fontWeight: FontWeight.w700),
@@ -56,7 +56,7 @@ class PaymentMethodRow extends StatelessWidget {
                     Text(
                       "**** **** **** ${pObj.cardNumber ?? ""}",
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: TColor.primary,
                           fontSize: 15,
                           fontWeight: FontWeight.w500),

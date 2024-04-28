@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shop_app/view/login/login_view.dart';
-import 'package:shop_app/view/login/sign_in_view.dart';
 
 import '../../common_widget/round_button.dart';
 

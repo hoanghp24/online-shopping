@@ -20,7 +20,7 @@ class LineTextField extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
               color: TColor.textTittle,
               fontSize: 16,
               fontWeight: FontWeight.w600),
@@ -35,7 +35,7 @@ class LineTextField extends StatelessWidget {
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
             hintText: placeholder,
-            hintStyle: TextStyle(color: TColor.placeholder, fontSize: 17),
+            hintStyle: const TextStyle(color: TColor.placeholder, fontSize: 17),
           ),
         ),
         Container(

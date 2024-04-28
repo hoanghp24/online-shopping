@@ -42,19 +42,19 @@ class PromoCodeModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['promo_code_id'] = this.promoCodeId;
-    data['code'] = this.code;
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['type'] = this.type;
-    data['min_order_amount'] = this.minOrderAmount;
-    data['max_discount_amount'] = this.maxDiscountAmount;
-    data['offer_price'] = this.offerPrice;
-    data['start_date'] = this.startDate;
-    data['end_date'] = this.endDate;
-    data['created_date'] = this.createdDate;
-    data['modify_date'] = this.modifyDate;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['promo_code_id'] = promoCodeId;
+    data['code'] = code;
+    data['title'] = title;
+    data['description'] = description;
+    data['type'] = type;
+    data['min_order_amount'] = minOrderAmount;
+    data['max_discount_amount'] = maxDiscountAmount;
+    data['offer_price'] = offerPrice;
+    data['start_date'] = startDate;
+    data['end_date'] = endDate;
+    data['created_date'] = createdDate;
+    data['modify_date'] = modifyDate;
     return data;
   }
 }

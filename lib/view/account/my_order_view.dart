@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/my_order_row.dart';
-import 'package:shop_app/view/home/home_view.dart';
 import 'package:shop_app/view/main_tabview/main_tabview.dart';
 import 'package:shop_app/view_model/addres_view_model.dart';
 

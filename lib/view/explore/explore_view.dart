@@ -34,7 +34,7 @@ class _ExploreViewState extends State<ExploreView> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Find Products",
           style: TextStyle(
               color: TColor.primaryText,
@@ -73,7 +73,7 @@ class _ExploreViewState extends State<ExploreView> {
                         height: 20,
                       ),
                     ),
-                    Text(
+                    const Text(
                       "Search Store",
                       style: TextStyle(
                           color: TColor.secondaryText,

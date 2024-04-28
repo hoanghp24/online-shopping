@@ -36,17 +36,17 @@ class UserPayloadModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_id'] = this.userId;
-    data['username'] = this.username;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['mobile'] = this.mobile;
-    data['mobile_code'] = this.mobileCode;
-    data['password'] = this.password;
-    data['auth_token'] = this.authToken;
-    data['status'] = this.status;
-    data['created_date'] = this.createdDate;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['user_id'] = userId;
+    data['username'] = username;
+    data['name'] = name;
+    data['email'] = email;
+    data['mobile'] = mobile;
+    data['mobile_code'] = mobileCode;
+    data['password'] = password;
+    data['auth_token'] = authToken;
+    data['status'] = status;
+    data['created_date'] = createdDate;
     return data;
   }
 }

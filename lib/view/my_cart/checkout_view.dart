@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -12,7 +10,6 @@ import 'package:shop_app/view_model/cart_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../common_widget/checkout_row.dart';
-import 'error_view.dart';
 
 class CheckoutView extends StatefulWidget {
   const CheckoutView({super.key});

@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shop_app/common_widget/my_order_row.dart';
-import 'package:shop_app/common_widget/round_button.dart';
-import 'package:shop_app/view/account/my_order_detail_view.dart';
-import 'package:shop_app/view/account/my_order_view.dart';
 
 import '../../common/color_extension.dart';
 

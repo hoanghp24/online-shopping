@@ -54,7 +54,7 @@ class _SelectLocationViewState extends State<SelectLocationView> {
                   SizedBox(
                     height: media.width * 0.1,
                   ),
-                  Text(
+                  const Text(
                     "Select Your Location",
                     style: TextStyle(
                         color: TColor.primaryText,
@@ -64,7 +64,7 @@ class _SelectLocationViewState extends State<SelectLocationView> {
                   SizedBox(
                     height: media.width * 0.03,
                   ),
-                  Text(
+                  const Text(
                     "Switch on your location to stay in tune with\nwhat’s happening in your area",
                     textAlign: TextAlign.center,
                     style: TextStyle(

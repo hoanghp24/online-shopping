@@ -54,7 +54,7 @@ class CartItemRow extends StatelessWidget {
                             Expanded(
                               child: Text(
                                 cObj.name ?? "",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: TColor.primaryText,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700),
@@ -76,7 +76,7 @@ class CartItemRow extends StatelessWidget {
                         ),
                         Text(
                           "${cObj.typeName}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: TColor.secondaryText,
                               fontSize: 14,
                               fontWeight: FontWeight.w500),
@@ -112,7 +112,7 @@ class CartItemRow extends StatelessWidget {
                             ),
                             Text(
                               (cObj.qty ?? 0).toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: TColor.primaryText,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600),
@@ -144,7 +144,7 @@ class CartItemRow extends StatelessWidget {
                             const Spacer(),
                             Text(
                               Formatter.formatCurrency(cObj.totalPrice ?? 0),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: TColor.primaryText,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../common/color_extension.dart';
 
 class AccountRow extends StatelessWidget {
   final String title;
