@@ -59,7 +59,7 @@ class _ForgotPasswordSetViewState extends State<ForgotPasswordSetView> {
                     height: media.width * 0.15,
                   ),
                   const Text(
-                    "Forgot Password",
+                    "Quên mật khẩu",
                     style: TextStyle(
                         color: TColor.primaryText,
                         fontSize: 26,
@@ -69,7 +69,7 @@ class _ForgotPasswordSetViewState extends State<ForgotPasswordSetView> {
                     height: media.width * 0.03,
                   ),
                   const Text(
-                    "Enter your new password",
+                    "Nhập mật khẩu mới",
                     style: TextStyle(
                         color: TColor.secondaryText,
                         fontSize: 16,
@@ -80,8 +80,8 @@ class _ForgotPasswordSetViewState extends State<ForgotPasswordSetView> {
                   ),
                   Obx(
                     () => LineTextField(
-                      title: "New Password",
-                      placeholder: "Enter your new password",
+                      title: "Mật khẩu mới",
+                      placeholder: "Nhập mật khẩu mới",
                       controller: forgotVM.txtNewPassword.value,
                       obscureText: !forgotVM.isShowPassword.value,
                       right: IconButton(
@@ -101,8 +101,8 @@ class _ForgotPasswordSetViewState extends State<ForgotPasswordSetView> {
                     height: media.width * 0.1,
                   ),
                   LineTextField(
-                    title: "Confirm Password",
-                    placeholder: "Enter your confirm password",
+                    title: "Nhập lại mật khẩu",
+                    placeholder: "Nhập lại mật khẩu",
                     controller: forgotVM.txtConfirmPassword.value,
                     obscureText: !forgotVM.isShowPassword.value,
                     right: IconButton(
@@ -121,7 +121,7 @@ class _ForgotPasswordSetViewState extends State<ForgotPasswordSetView> {
                     height: media.width * 0.05,
                   ),
                   RoundButton(
-                    title: "Submit",
+                    title: "Xác nhận",
                     onPressed: () {
                       forgotVM.serviceCallSetPassword();
                     },

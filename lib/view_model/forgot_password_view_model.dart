@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shop_app/common/globs.dart';
 import 'package:shop_app/common/service_call.dart';
 import 'package:shop_app/view/login/forgot_password_set_view.dart';
+import 'package:shop_app/view/login/login_view.dart';
 import 'package:shop_app/view/login/verification_view.dart';
 
 class ForgotPasswordViewModel extends GetxController {
@@ -101,7 +102,7 @@ class ForgotPasswordViewModel extends GetxController {
       Globs.hideHUD();
 
       if (resObj[KKey.status] == "1") {
-        Get.back();
+        Get.to(() => const LogInView());
         Get.delete<ForgotPasswordViewModel>();
         Get.snackbar(Globs.appName, resObj["message"].toString());
       } else {
