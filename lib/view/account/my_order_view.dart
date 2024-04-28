@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/my_order_row.dart';
-import 'package:shop_app/view_model/addres_view_mode.dart';
+import 'package:shop_app/view/home/home_view.dart';
+import 'package:shop_app/view/main_tabview/main_tabview.dart';
+import 'package:shop_app/view_model/addres_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../view_model/my_orders_view_model.dart';
@@ -27,37 +30,31 @@ class _MyOrdersViewState extends State<MyOrdersView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: TAppBar(
+        showBackArrow: true,
         backgroundColor: Colors.white,
-        elevation: 0.5,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              "assets/img/back.png",
-              width: 20,
-              height: 20,
-            )),
         centerTitle: true,
-        title: Text(
-          "My Orders",
+        title: const Text(
+          "Đơn hàng của tôi",
           style: TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
               fontWeight: FontWeight.w700),
         ),
+        onPressed: () {
+          Get.offAll(const MainTabView());
+        },
       ),
       backgroundColor: Colors.white,
       body: Obx(
         () => myVM.listArr.isEmpty
-            ? Center(
+            ? const Center(
                 child: Text(
-                  "No Any Order Place",
+                  "Chưa có đơn hàng nào",
                   style: TextStyle(
                       color: TColor.primaryText,
                       fontSize: 20,
-                      fontWeight: FontWeight.w700),
+                      fontWeight: FontWeight.w600),
                 ),
               )
             : ListView.builder(

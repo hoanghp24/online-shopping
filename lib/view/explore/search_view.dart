@@ -1,5 +1,13 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/product_cell.dart';
+import 'package:shop_app/view/home/product_details_view.dart';
+import 'package:shop_app/view_model/cart_view_model.dart';
+import 'package:shop_app/view_model/home_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../model/offer_product_model.dart';
@@ -15,68 +23,15 @@ class SearchView extends StatefulWidget {
 class _SearchViewState extends State<SearchView> {
   TextEditingController txtSearch = TextEditingController();
 
-  List searchArr = [
-    {
-      "name": "Egg Chicken Red",
-      "icon": "assets/img/egg_chicken_red.png",
-      "qty": "4",
-      "unit": "pcs, Price",
-      "price": "\$1.99"
-    },
-    {
-      "name": "Egg Chicken White",
-      "icon": "assets/img/egg_chicken_white.png",
-      "qty": "2",
-      "unit": "pcs, Price",
-      "price": "\$1.49"
-    },
-    {
-      "name": "Egg Pasta",
-      "icon": "assets/img/egg_pasta.png",
-      "qty": "1",
-      "unit": "kg, Price",
-      "price": "\$3.99"
-    },
-    {
-      "name": "Egg Noodles",
-      "icon": "assets/img/egg_noodles.png",
-      "qty": "1",
-      "unit": "kg, Price",
-      "price": "\$6.49"
-    },
-    {
-      "name": "Mayonnais Eggless",
-      "icon": "assets/img/mayinnars_eggless.png",
-      "qty": "325",
-      "unit": "ml, Price",
-      "price": "\$2.99"
-    },
-    {
-      "name": "Egg Noodles",
-      "icon": "assets/img/egg_noodies_new.png",
-      "qty": "2",
-      "unit": "kg, Price",
-      "price": "\$9.49"
-    }
-  ];
+  final homeVM = Get.put(HomeViewModel());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+      appBar: TAppBar(
         centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              "assets/img/back.png",
-              width: 20,
-              height: 20,
-            )),
+        showBackArrow: true,
         actions: [
           IconButton(
               onPressed: () {
@@ -101,13 +56,9 @@ class _SearchViewState extends State<SearchView> {
             controller: txtSearch,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 16),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: Image.asset(
-                  "assets/img/search.png",
-                  width: 20,
-                  height: 20,
-                ),
+              prefixIcon: const Padding(
+                padding: EdgeInsets.all(13.0),
+                child: Icon(Iconsax.search_normal_1),
               ),
               suffixIcon: IconButton(
                 onPressed: () {
@@ -115,60 +66,38 @@ class _SearchViewState extends State<SearchView> {
                   FocusScope.of(context).requestFocus(FocusNode());
                   setState(() {});
                 },
-                icon: Image.asset(
-                  "assets/img/t_close.png",
-                  width: 15,
-                  height: 15,
-                ),
+                icon: const Icon(Iconsax.close_circle5, color: Colors.grey),
               ),
               border: InputBorder.none,
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
-              hintText: "Search Store",
-              hintStyle: TextStyle(
+              hintText: "Tìm kiếm",
+              hintStyle: const TextStyle(
                   color: TColor.secondaryText,
                   fontSize: 14,
                   fontWeight: FontWeight.w600),
             ),
           ),
         ),
+        onPressed: () => Get.back(),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.75,
-            crossAxisSpacing: 15,
-            mainAxisSpacing: 15),
-        itemCount: searchArr.length,
+            crossAxisCount: 2, childAspectRatio: 0.65),
+        itemCount: homeVM.bestSellingArr.length,
         itemBuilder: ((context, index) {
-          var pObj = searchArr[index] as Map? ?? {};
+          var pObj = homeVM.bestSellingArr[index];
           return ProductCell(
-            pObj: OfferProductModel.fromJson(
-              {
-                "offer_price": 2.49,
-                "start_date": "2023-07-30T18:30:00.000Z",
-                "end_date": "2023-08-29T18:30:00.000Z",
-                "prod_id": 5,
-                "cat_id": 1,
-                "brand_id": 1,
-                "type_id": 1,
-                "name": "Organic Banana",
-                "detail":
-                    "banana, fruit of the genus Musa, of the family Musaceae, one of the most important fruit crops of the world. The banana is grown in the tropics, and, though it is most widely consumed in those regions, it is valued worldwide for its flavour, nutritional value, and availability throughout the year",
-                "unit_name": "pcs",
-                "unit_value": "7",
-                "nutrition_weight": "200g",
-                "price": 2.99,
-                "image": "product/202307310947354735xuruflIucc.png",
-                "cat_name": "Frash Fruits & Vegetable",
-                "type_name": "Pulses"
-              },
-            ),
-            margin: 0,
-            weight: double.maxFinite,
-            onPressed: () {},
-            onCart: () {},
+            pObj: pObj,
+            onPressed: () async {
+              await Get.to(() => ProductDetails(pObj: pObj));
+
+              homeVM.serviceCallHome();
+            },
+            onCart: () {
+              CartViewModel.serviceCallAddToCart(pObj.prodId ?? 0, 1, () {});
+            },
           );
         }),
       ),

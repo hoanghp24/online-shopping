@@ -11,10 +11,10 @@ import '../view/my_cart/order_accpet_view.dart';
 
 class CartViewModel extends GetxController {
   final RxList<CartItemModel> listArr = <CartItemModel>[].obs;
-  final cartTotalPrice = "0.0".obs;
-  final deliverPriceAmount = "0.0".obs;
-  final discountAmount = "0.0".obs;
-  final userPayPrice = "0.0".obs;
+  final cartTotalPrice = "0".obs;
+  final deliverPriceAmount = "0".obs;
+  final discountAmount = "0".obs;
+  final userPayPrice = "0".obs;
   final isLoading = false.obs;
 
   final deliverObj = AddressModel().obs;
@@ -50,17 +50,15 @@ class CartViewModel extends GetxController {
         }).toList();
 
         listArr.value = listDataArr;
-        cartTotalPrice.value = resObj["total"] as String? ?? "0.0";
-        deliverPriceAmount.value =
-            resObj["deliver_price_amount"] as String? ?? "0.0";
-        discountAmount.value = resObj["discount_amount"] as String? ?? "0.0";
-        userPayPrice.value = resObj["user_pay_price"] as String? ?? "0.0";
+        cartTotalPrice.value = resObj["total"].toString();
+        deliverPriceAmount.value = resObj["deliver_price_amount"].toString();
+        discountAmount.value = resObj["discount_amount"].toString();
+        userPayPrice.value = resObj["user_pay_price"].toString();
       } else {
-        cartTotalPrice.value = resObj["total"] as String? ?? "0.0";
-        deliverPriceAmount.value =
-            resObj["deliver_price_amount"] as String? ?? "0.0";
-        discountAmount.value = resObj["discount_amount"] as String? ?? "0.0";
-        userPayPrice.value = resObj["user_pay_price"] as String? ?? "0.0";
+        cartTotalPrice.value = resObj["total"].toString();
+        deliverPriceAmount.value = resObj["deliver_price_amount"].toString();
+        discountAmount.value = resObj["discount_amount"].toString();
+        userPayPrice.value = resObj["user_pay_price"].toString();
 
         Get.snackbar(Globs.appName, resObj[KKey.message] as String? ?? "Fail");
       }
@@ -80,7 +78,7 @@ class CartViewModel extends GetxController {
       Globs.hideHUD();
 
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        // Get.snackbar(Globs.appName, resObj[KKey.message].toString());
         serviceCallList();
       } else {}
     }, failure: (err) async {
@@ -108,12 +106,12 @@ class CartViewModel extends GetxController {
 
   void serviceCallOrderPlace() {
     if (deliveryType.value == "1" && (deliverObj.value.addressId ?? 0) == 0) {
-      Get.snackbar(Globs.appName, "Please select delivery address");
+      Get.snackbar(Globs.appName, "Vui lòng chọn địa chỉ giao hàng!");
       return;
     }
 
     if (paymentType.value == "2" && (paymentObj.value.payId ?? 0) == 0) {
-      Get.snackbar(Globs.appName, "Please select payment method");
+      Get.snackbar(Globs.appName, "Vui lòng chọn phương thức thanh toán!");
       return;
     }
 

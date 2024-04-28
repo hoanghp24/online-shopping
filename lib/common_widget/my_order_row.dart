@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/common/formatter.dart';
 import 'package:shop_app/model/my_order_model.dart';
 
 import '../common/color_extension.dart';
@@ -27,37 +28,38 @@ class MyOrderRow extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text(
-                    "Order No: #",
+                  const Text(
+                    "Mã vận đơn: ",
                     style: TextStyle(
                         color: TColor.primaryText,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600),
                   ),
                   Expanded(
                       child: Text(
                     mObj.orderId?.toString() ?? "",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: TColor.primaryText,
                         fontSize: 16,
-                        fontWeight: FontWeight.w700),
+                        fontWeight: FontWeight.w600),
                   )),
                   Text(
                     getOrderStatus(mObj),
                     style: TextStyle(
                         color: getOrderStatusColor(mObj),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600),
                   )
                 ],
               ),
+              const SizedBox(height: 8),
               Text(
-                mObj.createdDate ?? "",
-                style: TextStyle(color: TColor.secondaryText, fontSize: 12),
+                Formatter.formatDateTime(
+                    DateTime.parse(mObj.createdDate ?? "")),
+                style:
+                    const TextStyle(color: TColor.secondaryText, fontSize: 12),
               ),
-              const SizedBox(
-                height: 8,
-              ),
+              const SizedBox(height: 8),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -82,17 +84,10 @@ class MyOrderRow extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                "Items: ",
-                                style: TextStyle(
-                                    color: TColor.primaryText,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700),
-                              ),
                               Expanded(
                                 child: Text(
                                   mObj.names ?? "",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: TColor.secondaryText,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500),
@@ -100,60 +95,18 @@ class MyOrderRow extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                "Delivery Type: ",
-                                style: TextStyle(
-                                    color: TColor.primaryText,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              Expanded(
-                                  child: Text(
-                                getDeliverType(mObj),
-                                style: TextStyle(
-                                    color: TColor.primaryText,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500),
-                              )),
-                            ],
+                          const SizedBox(
+                            height: 8,
                           ),
                           Row(
                             children: [
-                              Text(
-                                "Payment Type: ",
-                                style: TextStyle(
-                                    color: TColor.primaryText,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700),
-                              ),
                               Expanded(
                                   child: Text(
-                                getPaymentType(mObj),
-                                style: TextStyle(
+                                Formatter.formatCurrency(mObj.userPayPrice!),
+                                style: const TextStyle(
                                     color: TColor.primaryText,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500),
-                              )),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "Payment Status: ",
-                                style: TextStyle(
-                                    color: TColor.primaryText,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              Expanded(
-                                  child: Text(
-                                getPaymentStatus(mObj),
-                                style: TextStyle(
-                                    color: getPaymentStatusColor(mObj),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700),
                               )),
                             ],
                           ),
@@ -171,15 +124,15 @@ String getOrderStatus(MyOrderModel mObj) {
   //1: new, 2: order_accept, 3: order_delivered, 4: cancel, 5: order declined
   switch (mObj.orderStatus) {
     case 1:
-      return "Placed";
+      return "Chờ xác nhận";
     case 2:
-      return "Accepted";
+      return "Chờ giao hàng";
     case 3:
-      return "Delivered";
+      return "Đã giao";
     case 4:
-      return "Cancel";
+      return "Đã huỷ";
     case 5:
-      return "Declined";
+      return "Trả hàng";
     default:
       return "";
   }

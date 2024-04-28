@@ -24,7 +24,7 @@ class ServiceCall {
             .post(Uri.parse(path), body: parameter, headers: headers)
             .then((value) {
           if (kDebugMode) {
-            print(value.body);
+            print('Loading body Ok');
           }
           try {
             var jsonObj =

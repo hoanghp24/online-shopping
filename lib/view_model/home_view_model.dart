@@ -26,6 +26,12 @@ class HomeViewModel extends GetxController {
     serviceCallHome();
   }
 
+  final carouselCurrentIndex = 0.obs;
+
+  void updatePageIndicator(index) {
+    carouselCurrentIndex.value = index;
+  }
+
   //ServiceCall
   void serviceCallHome() {
     Globs.showHUD();

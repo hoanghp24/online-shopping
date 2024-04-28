@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/common/color_extension.dart';
+import 'package:shop_app/common/formatter.dart';
 
 import '../model/cart_item_model.dart';
 
@@ -74,7 +75,7 @@ class CartItemRow extends StatelessWidget {
                           height: 2,
                         ),
                         Text(
-                          "${cObj.unitValue}${cObj.unitName} Price",
+                          "${cObj.typeName}",
                           style: TextStyle(
                               color: TColor.secondaryText,
                               fontSize: 14,
@@ -142,7 +143,7 @@ class CartItemRow extends StatelessWidget {
                             ),
                             const Spacer(),
                             Text(
-                              "\$${(cObj.totalPrice ?? 0).toStringAsFixed(2)}",
+                              Formatter.formatCurrency(cObj.totalPrice ?? 0),
                               style: TextStyle(
                                   color: TColor.primaryText,
                                   fontSize: 18,

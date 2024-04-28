@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/line_textfield.dart';
 import 'package:shop_app/common_widget/round_button.dart';
 
@@ -32,26 +33,20 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: TAppBar(
         backgroundColor: Colors.white,
-        elevation: 0.5,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              "assets/img/back.png",
-              width: 20,
-              height: 20,
-            )),
+        showBackArrow: true,
         centerTitle: true,
-        title: Text(
-          "Change Password",
+        title: const Text(
+          "Đổi mật khẩu",
           style: TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
               fontWeight: FontWeight.w700),
         ),
+        onPressed: () {
+          Get.back();
+        },
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -62,25 +57,25 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
               Column(
                 children: [
                   LineTextField(
-                      title: "Current Password",
-                      placeholder: "Enter you current password",
+                      title: "Mật khẩu hiện tại",
+                      placeholder: "Nhập mật khẩu hiện tại",
                       obscureText: true,
                       controller: detailVM.txtCurrentPassword.value),
                   const SizedBox(
                     height: 15,
                   ),
                   LineTextField(
-                      title: "New Password",
-                      placeholder: "Enter you new password",
+                      title: "Mật khẩu mới",
+                      placeholder: "Nhập mật khẩu mới",
                       obscureText: true,
                       controller: detailVM.txtNewPassword.value),
                   const SizedBox(
                     height: 15,
                   ),
                   LineTextField(
-                      title: "Confirm Password",
+                      title: "Nhập lại mật khẩu",
                       obscureText: true,
-                      placeholder: "Enter you Confirm password",
+                      placeholder: "Nhập lại mật khẩu",
                       controller: detailVM.txtConfirmPassword.value),
                   const SizedBox(
                     height: 15,
@@ -91,7 +86,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                 height: 25,
               ),
               RoundButton(
-                  title: "Set",
+                  title: "Xác nhận",
                   onPressed: () {
                     detailVM.serviceCallSetPassword(() {
                       Navigator.pop(context);

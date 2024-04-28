@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../common/color_extension.dart';
 
@@ -36,20 +37,16 @@ class AccountRow extends StatelessWidget {
                   child: Text(
                     title,
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                        color: TColor.primaryText,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600),
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
                 const SizedBox(
                   width: 15,
                 ),
-                Image.asset(
-                  "assets/img/next.png",
-                  height: 15,
-                  color: TColor.primaryText,
-                ),
+                const Icon(Iconsax.arrow_right_3)
               ],
             ),
           ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_app/common/formatter.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/my_order_row.dart';
-import 'package:shop_app/view_model/addres_view_mode.dart';
+import 'package:shop_app/view_model/addres_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../common_widget/order_item_row.dart';
@@ -35,26 +37,20 @@ class _MyOrdersDetailViewState extends State<MyOrdersDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: TAppBar(
         backgroundColor: Colors.white,
-        elevation: 0.5,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              "assets/img/back.png",
-              width: 20,
-              height: 20,
-            )),
+        showBackArrow: true,
         centerTitle: true,
-        title: Text(
-          "My Order Detail",
+        title: const Text(
+          "Chi tiết đơn hàng",
           style: TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
               fontWeight: FontWeight.w700),
         ),
+        onPressed: () {
+          Get.back();
+        },
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -80,95 +76,42 @@ class _MyOrdersDetailViewState extends State<MyOrdersDetailView> {
                       children: [
                         Expanded(
                           child: Text(
-                            "Order ID: #${widget.mObj.orderId}",
-                            style: TextStyle(
+                            "Mã vận đơn: ${widget.mObj.orderId}",
+                            style: const TextStyle(
                                 color: TColor.primaryText,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                        Text(
-                          getPaymentStatus(widget.mObj),
-                          style: TextStyle(
-                              color: getPaymentStatusColor(widget.mObj),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "${widget.mObj.createdDate}",
-                            style: TextStyle(
-                                color: TColor.secondaryText, fontSize: 12),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                         Text(
                           getOrderStatus(widget.mObj),
                           style: TextStyle(
                               color: getOrderStatusColor(widget.mObj),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 4,
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            Formatter.formatDateTime(
+                                DateTime.parse(widget.mObj.createdDate!)),
+                            style: const TextStyle(
+                                color: TColor.secondaryText, fontSize: 12),
+                          ),
+                        ),
+                      ],
                     ),
+                    const SizedBox(height: 8),
                     Text(
-                      "${widget.mObj.address ?? ""}, ${widget.mObj.city ?? ""}, ${widget.mObj.state ?? ""}, ${widget.mObj.postalCode} ",
-                      style:
-                          TextStyle(color: TColor.secondaryText, fontSize: 16),
+                      "${widget.mObj.address ?? ""}, ${widget.mObj.state ?? ""}, ${widget.mObj.city ?? ""}, ${widget.mObj.postalCode} ",
+                      style: const TextStyle(
+                          color: TColor.secondaryText, fontSize: 15),
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Delivery Type: ",
-                          style: TextStyle(
-                              color: TColor.primaryText,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Expanded(
-                          child: Text(
-                            getDeliverType(widget.mObj),
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                                color: TColor.primaryText, fontSize: 16),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Payment Type: ",
-                          style: TextStyle(
-                              color: TColor.primaryText,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Expanded(
-                          child: Text(
-                            getPaymentType(widget.mObj),
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                                color: TColor.primaryText, fontSize: 16),
-                          ),
-                        ),
-                      ],
-                    ),
+                    const SizedBox(height: 8),
                   ]),
             ),
             Obx(
@@ -199,20 +142,21 @@ class _MyOrdersDetailViewState extends State<MyOrdersDetailView> {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          "Amount:",
+                        const Text(
+                          "Tổng tiền hàng:",
                           style: TextStyle(
                               color: TColor.primaryText,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600),
                         ),
                         Expanded(
                           child: Text(
-                            " \$${(widget.mObj.totalPrice ?? 0).toStringAsFixed(2)}",
+                            Formatter.formatCurrency(
+                                widget.mObj.totalPrice ?? 0),
                             textAlign: TextAlign.right,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: TColor.primaryText,
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -223,20 +167,21 @@ class _MyOrdersDetailViewState extends State<MyOrdersDetailView> {
                     ),
                     Row(
                       children: [
-                        Text(
-                          "Delivery Cost:",
+                        const Text(
+                          "Phí vận chuyển:",
                           style: TextStyle(
                               color: TColor.primaryText,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600),
                         ),
                         Expanded(
                           child: Text(
-                            "+ \$${(widget.mObj.deliverPrice ?? 0).toStringAsFixed(2)}",
+                            Formatter.formatCurrency(
+                                widget.mObj.deliverPrice ?? 0),
                             textAlign: TextAlign.right,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: TColor.primaryText,
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -247,20 +192,20 @@ class _MyOrdersDetailViewState extends State<MyOrdersDetailView> {
                     ),
                     Row(
                       children: [
-                        Text(
-                          "Discount:",
+                        const Text(
+                          "Giảm giá:",
                           style: TextStyle(
                               color: TColor.primaryText,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600),
                         ),
                         Expanded(
                           child: Text(
-                            "- \$${(widget.mObj.discountPrice ?? 0).toStringAsFixed(2)}",
+                            "- ${Formatter.formatCurrency(widget.mObj.discountPrice ?? 0)}",
                             textAlign: TextAlign.right,
                             style: const TextStyle(
                                 color: Colors.red,
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -273,27 +218,26 @@ class _MyOrdersDetailViewState extends State<MyOrdersDetailView> {
                         width: double.maxFinite,
                         height: 1,
                         color: Colors.black12),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    const SizedBox(height: 8),
                     Row(
                       children: [
-                        Text(
-                          "Total:",
+                        const Text(
+                          "Tổng thanh toán:",
                           textAlign: TextAlign.right,
                           style: TextStyle(
                               color: TColor.primaryText,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
                         ),
                         Expanded(
                           child: Text(
-                            "\$${(widget.mObj.userPayPrice ?? 0).toStringAsFixed(2)}",
+                            Formatter.formatCurrency(
+                                widget.mObj.userPayPrice ?? 0),
                             textAlign: TextAlign.right,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: TColor.primaryText,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w700),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                       ],

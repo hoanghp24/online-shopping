@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/common/formatter.dart';
 import 'package:shop_app/model/offer_product_model.dart';
 
 import '../common/color_extension.dart';
@@ -40,7 +41,7 @@ class FavoriteRow extends StatelessWidget {
                     children: [
                       Text(
                         pObj.name ?? "",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: TColor.primaryText,
                             fontSize: 16,
                             fontWeight: FontWeight.w700),
@@ -49,8 +50,8 @@ class FavoriteRow extends StatelessWidget {
                         height: 2,
                       ),
                       Text(
-                        "${pObj.unitValue}${pObj.unitName}",
-                        style: TextStyle(
+                        "${pObj.typeName}",
+                        style: const TextStyle(
                             color: TColor.secondaryText,
                             fontSize: 14,
                             fontWeight: FontWeight.w500),
@@ -62,8 +63,8 @@ class FavoriteRow extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  "\$${pObj.offerPrice ?? pObj.price}",
-                  style: TextStyle(
+                  Formatter.formatCurrency(pObj.offerPrice ?? pObj.price!),
+                  style: const TextStyle(
                       color: TColor.primaryText,
                       fontSize: 18,
                       fontWeight: FontWeight.w600),

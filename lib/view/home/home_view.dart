@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:shop_app/common_widget/home_categories.dart';
+import 'package:shop_app/common_widget/promo_slider.dart';
 import 'package:shop_app/model/offer_product_model.dart';
+import 'package:shop_app/view/explore/explore_detail_view.dart';
+import 'package:shop_app/view/explore/explore_view.dart';
+import 'package:shop_app/view/explore/search_view.dart';
 import 'package:shop_app/view/home/product_details_view.dart';
+import 'package:shop_app/view_model/explore_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../common_widget/category_cell.dart';
@@ -21,6 +28,7 @@ class _HomeViewState extends State<HomeView> {
   TextEditingController txtSearch = TextEditingController();
 
   final homeVM = Get.put(HomeViewModel());
+  final exploreVM = Get.put(ExploreViewModel());
 
   @override
   void dispose() {
@@ -42,127 +50,86 @@ class _HomeViewState extends State<HomeView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    "assets/img/color_logo.png",
-                    width: 25,
+                    "assets/img/app_logo.png",
+                    width: 100,
+                    color: TColor.primary,
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 4,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/img/location.png",
-                    width: 16,
-                    height: 16,
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    "Dhaka, Banassre",
-                    style: TextStyle(
-                        color: TColor.darkGray,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
+              const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Container(
-                  height: 52,
-                  decoration: BoxDecoration(
-                      color: const Color(0xffF2F3F2),
-                      borderRadius: BorderRadius.circular(15)),
-                  alignment: Alignment.center,
-                  child: TextField(
-                    controller: txtSearch,
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(vertical: 16),
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.all(13.0),
-                        child: Image.asset(
-                          "assets/img/search.png",
-                          width: 20,
-                          height: 20,
-                        ),
+                child: GestureDetector(
+                  onTap: () => Get.to(() => const SearchView()),
+                  child: Container(
+                    height: 52,
+                    decoration: BoxDecoration(
+                        color: const Color(0xffF2F3F2),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                        children: [
+                          const Icon(Iconsax.search_normal_1),
+                          const SizedBox(width: 8),
+                          Expanded(
+                              child: Text('Tìm kiếm tại cửa hàng',
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium))
+                        ],
                       ),
-                      border: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      hintText: "Search Store",
-                      hintStyle: TextStyle(
-                          color: TColor.secondaryText,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
+              const SizedBox(height: 15),
+              const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: PromoSlider(sliders: [
+                    "assets/img/slider2.png",
+                    "assets/img/slider3.png",
+                    "assets/img/slider4.png",
+                  ])),
+              const SizedBox(height: 24),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Container(
-                    width: double.maxFinite,
-                    height: 115,
-                    decoration: BoxDecoration(
-                        color: const Color(0xffF2F3F2),
-                        borderRadius: BorderRadius.circular(15)),
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      "assets/img/banner_top.png",
-                      fit: BoxFit.cover,
-                    )),
-              ),
-              SectionView(
-                title: "Exclusive Offer",
-                padding:
-                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                onPressed: () {},
-              ),
-              SizedBox(
-                height: 230,
-                child: Obx(
-                  () => ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      itemCount: homeVM.offerArr.length,
-                      itemBuilder: (context, index) {
-                        var pObj = homeVM.offerArr[index];
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: SizedBox(
+                  height: 90,
+                  child: Obx(
+                    () => ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(width: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        itemCount: exploreVM.listArr.length,
+                        itemBuilder: (context, index) {
+                          var pObj = exploreVM.listArr[index];
 
-                        return ProductCell(
-                          pObj: pObj,
-                          onPressed: () async {
-                            await Get.to(() => ProductDetails(
-                                  pObj: pObj,
-                                ));
-
-                            homeVM.serviceCallHome();
-                          },
-                          onCart: () {
-                            CartViewModel.serviceCallAddToCart(
-                                pObj.prodId ?? 0, 1, () {});
-                          },
-                        );
-                      }),
+                          return HomeCategories(
+                            pObj: pObj,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ExploreDetailView(
+                                          eObj: pObj,
+                                        )),
+                              );
+                            },
+                          );
+                        }),
+                  ),
                 ),
               ),
+              const SizedBox(height: 15),
               SectionView(
-                title: "Best Selling",
+                title: "Sản phẩm bán chạy",
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 onPressed: () {},
               ),
               SizedBox(
-                height: 230,
+                height: 280,
                 child: Obx(
                   () => ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -174,9 +141,7 @@ class _HomeViewState extends State<HomeView> {
                         return ProductCell(
                           pObj: pObj,
                           onPressed: () async {
-                            await Get.to(() => ProductDetails(
-                                  pObj: pObj,
-                                ));
+                            await Get.to(() => ProductDetails(pObj: pObj));
 
                             homeVM.serviceCallHome();
                           },
@@ -189,33 +154,14 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               SectionView(
-                title: "Groceries",
+                title: "Ưu đãi hấp dẫn",
+                isSale: true,
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 onPressed: () {},
               ),
               SizedBox(
-                height: 100,
-                child: Obx(
-                  () => ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      itemCount: homeVM.groceriesArr.length,
-                      itemBuilder: (context, index) {
-                        var pObj = homeVM.groceriesArr[index];
-
-                        return CategoryCell(
-                          pObj: pObj,
-                          onPressed: () {},
-                        );
-                      }),
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                height: 230,
+                height: 280,
                 child: Obx(
                   () => ListView.builder(
                       scrollDirection: Axis.horizontal,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/payment_method_row.dart';
 import 'package:shop_app/view/account/add_payment_method_view.dart';
 
@@ -28,41 +30,35 @@ class _PaymentMethodListViewState extends State<PaymentMethodListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.5,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Image.asset(
-                "assets/img/back.png",
-                width: 20,
-                height: 20,
-              )),
-          centerTitle: true,
-          title: Text(
-            "Payment Methods",
-            style: TextStyle(
-                color: TColor.primaryText,
-                fontSize: 20,
-                fontWeight: FontWeight.w700),
-          ),
-          actions: [
-            IconButton(
-                onPressed: () async {
-                  payVM.clearAll();
+      appBar: TAppBar(
+        backgroundColor: Colors.white,
+        showBackArrow: true,
+        centerTitle: true,
+        title: const Text(
+          "Phương thức thanh toán",
+          style: TextStyle(
+              color: TColor.primaryText,
+              fontSize: 20,
+              fontWeight: FontWeight.w700),
+        ),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                payVM.clearAll();
 
-                  await Get.to(() => const AddPaymentMethodView());
-                  payVM.serviceCallList();
-                },
-                icon: Image.asset(
-                  "assets/img/add.png",
-                  width: 20,
-                  height: 20,
-                  color: TColor.primaryText,
-                )),
-          ]),
+                await Get.to(() => const AddPaymentMethodView());
+                payVM.serviceCallList();
+              },
+              icon: const Icon(
+                Iconsax.add,
+                color: Colors.black,
+                size: 30,
+              )),
+        ],
+        onPressed: () {
+          Get.back();
+        },
+      ),
       backgroundColor: Colors.white,
       body: Obx(
         () => ListView.builder(

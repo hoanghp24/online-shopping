@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:shop_app/common/formatter.dart';
 import 'package:shop_app/view/my_cart/checkout_view.dart';
 
 import '../../common/color_extension.dart';
@@ -30,8 +32,8 @@ class _MyCartViewState extends State<MyCartView> {
         backgroundColor: Colors.white,
         elevation: 0.5,
         centerTitle: true,
-        title: Text(
-          "My Cart",
+        title: const Text(
+          "Giỏ hàng",
           style: TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
@@ -85,7 +87,7 @@ class _MyCartViewState extends State<MyCartView> {
                           },
                           height: 60,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(19)),
+                              borderRadius: BorderRadius.circular(100)),
                           minWidth: double.maxFinite,
                           elevation: 0.1,
                           color: TColor.primary,
@@ -96,7 +98,7 @@ class _MyCartViewState extends State<MyCartView> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Go to Checkout",
+                                    "Mua hàng",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -112,7 +114,8 @@ class _MyCartViewState extends State<MyCartView> {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 4, horizontal: 8),
                                 child: Text(
-                                  "\$${cartVM.cartTotalPrice.value}",
+                                  Formatter.formatCurrency(
+                                      int.parse(cartVM.cartTotalPrice.value)),
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 12,
@@ -122,12 +125,27 @@ class _MyCartViewState extends State<MyCartView> {
                             ],
                           ),
                         )
-                      : Text(
-                          "Your Card is Empty",
-                          style: TextStyle(
-                              color: TColor.primaryText,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700),
+                      : const Column(
+                          children: [
+                            Icon(Iconsax.box_search,
+                                size: 50, color: Colors.grey),
+                            SizedBox(height: 8),
+                            Text(
+                              "Chưa có gì trong giỏ",
+                              style: TextStyle(
+                                  color: TColor.primaryText,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              "Tiếp tục xem để mua sắm!",
+                              style: TextStyle(
+                                  color: TColor.primaryText,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
                         ),
                 ],
               ),

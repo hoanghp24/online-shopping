@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/model/address_model.dart';
 import 'package:shop_app/view/account/add_address_view.dart';
-import 'package:shop_app/view_model/addres_view_mode.dart';
+import 'package:shop_app/view_model/addres_view_model.dart';
 
 import '../common/color_extension.dart';
 
@@ -40,7 +40,7 @@ class AddressRow extends StatelessWidget {
                         Expanded(
                           child: Text(
                             aObj.name ?? "",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: TColor.primaryText,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700),
@@ -53,8 +53,8 @@ class AddressRow extends StatelessWidget {
                               color: TColor.secondaryText.withOpacity(0.3),
                               borderRadius: BorderRadius.circular(5)),
                           child: Text(
-                            aObj.typeName ?? "Home",
-                            style: TextStyle(
+                            aObj.typeName ?? "Nhà",
+                            style: const TextStyle(
                                 color: TColor.secondaryText,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700),
@@ -66,20 +66,18 @@ class AddressRow extends StatelessWidget {
                       height: 4,
                     ),
                     Text(
-                      "${aObj.address ?? ""}, ${aObj.city ?? ""}, ${aObj.state ?? ""}, ${aObj.postalCode} ",
+                      "${aObj.address ?? ""}, ${aObj.state ?? ""}, ${aObj.city ?? ""}, ${aObj.postalCode} ",
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: TColor.primaryText,
                           fontSize: 14,
                           fontWeight: FontWeight.w500),
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    const SizedBox(height: 8),
                     Text(
                       aObj.phone ?? "",
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: TColor.secondaryText,
                           fontSize: 12,
                           fontWeight: FontWeight.w500),
@@ -92,14 +90,14 @@ class AddressRow extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () async {
-                    Get.find<AddressViewModel>().setDataModel(aObj);
+                    Get.put(AddressViewModel()).setDataModel(aObj);
                     await Get.to(() => AddAddressView(
                           aObj: aObj,
                           isEdit: true,
                         ));
                     didUpdateDone();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.edit,
                     color: TColor.primary,
                     size: 20,
@@ -107,7 +105,7 @@ class AddressRow extends StatelessWidget {
                 ),
                 IconButton(
                     onPressed: () {
-                      Get.find<AddressViewModel>().serviceCallRemove(aObj);
+                      Get.put(AddressViewModel()).serviceCallRemove(aObj);
                     },
                     icon: Image.asset(
                       "assets/img/close.png",

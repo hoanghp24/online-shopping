@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/common/formatter.dart';
 
 import '../common/color_extension.dart';
 import '../model/notification_model.dart';
@@ -23,46 +24,42 @@ class NotificationRow extends StatelessWidget {
           children: [
             Expanded(
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          nObj.title ?? "",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: TColor.primaryText,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700),
-                        ),
-
-                        Text(
-                          nObj.createdDate ?? "",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: TColor.secondaryText, fontSize: 12),
-                        ),
-                      ],
-                    ),
-                    
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      nObj.message ?? "",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          color: TColor.primaryText,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500),
-                    )
-                    
-                  ],
-                ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        nObj.title ?? "",
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            color: TColor.primaryText,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      Text(
+                        Formatter.formatDateTime(
+                            DateTime.parse(nObj.createdDate ?? "")),
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            color: TColor.secondaryText, fontSize: 12),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    nObj.message ?? "",
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                        color: TColor.primaryText,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500),
+                  )
+                ],
               ),
-            
-            
+            ),
           ],
         ),
       ),

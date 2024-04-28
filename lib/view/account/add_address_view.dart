@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/common_widget/line_textfield.dart';
 import 'package:shop_app/common_widget/round_button.dart';
-import 'package:shop_app/view_model/addres_view_mode.dart';
+import 'package:shop_app/view_model/addres_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../model/address_model.dart';
@@ -44,7 +44,7 @@ class _AddAddressViewState extends State<AddAddressView> {
         centerTitle: true,
         title: Text(
           widget.isEdit ? "Edit Address" : "Add Address",
-          style: TextStyle(
+          style: const TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
               fontWeight: FontWeight.w700),
@@ -64,12 +64,12 @@ class _AddAddressViewState extends State<AddAddressView> {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              addressVM.txtType.value = "Home";
+                              addressVM.txtType.value = "Nhà";
                             },
                             child: Row(
                               children: [
                                 Icon(
-                                  addressVM.txtType.value == "Home"
+                                  addressVM.txtType.value == "Nhà"
                                       ? Icons.radio_button_checked
                                       : Icons.radio_button_off,
                                   color: TColor.primaryText,
@@ -77,8 +77,8 @@ class _AddAddressViewState extends State<AddAddressView> {
                                 const SizedBox(
                                   width: 15,
                                 ),
-                                Text(
-                                  "Home",
+                                const Text(
+                                  "Nhà",
                                   style: TextStyle(
                                       color: TColor.primaryText,
                                       fontSize: 16,
@@ -91,12 +91,12 @@ class _AddAddressViewState extends State<AddAddressView> {
                         Expanded(
                             child: InkWell(
                           onTap: () {
-                            addressVM.txtType.value = "Office";
+                            addressVM.txtType.value = "Văn phòng";
                           },
                           child: Row(
                             children: [
                               Icon(
-                                addressVM.txtType.value == "Office"
+                                addressVM.txtType.value == "Văn phòng"
                                     ? Icons.radio_button_checked
                                     : Icons.radio_button_off,
                                 color: TColor.primaryText,
@@ -104,8 +104,8 @@ class _AddAddressViewState extends State<AddAddressView> {
                               const SizedBox(
                                 width: 15,
                               ),
-                              Text(
-                                "Office",
+                              const Text(
+                                "Văn phòng",
                                 style: TextStyle(
                                     color: TColor.primaryText,
                                     fontSize: 16,
@@ -121,23 +121,23 @@ class _AddAddressViewState extends State<AddAddressView> {
                     height: 15,
                   ),
                   LineTextField(
-                      title: "Name",
-                      placeholder: "Enter you name",
+                      title: "Tên",
+                      placeholder: "Nhập tên của bạn",
                       controller: addressVM.txtName.value),
                   const SizedBox(
                     height: 15,
                   ),
                   LineTextField(
-                      title: "Mobile",
-                      placeholder: "Enter you mobile number",
+                      title: "Số điện thoại",
+                      placeholder: "Nhập số điện thoại",
                       keyboardType: TextInputType.phone,
                       controller: addressVM.txtMobile.value),
                   const SizedBox(
                     height: 15,
                   ),
                   LineTextField(
-                      title: "Address Line",
-                      placeholder: "Enter you address",
+                      title: "Địa chỉ cụ thể",
+                      placeholder: "Nhập địa chỉ",
                       controller: addressVM.txtAddressLine.value),
                   const SizedBox(
                     height: 15,
@@ -146,8 +146,8 @@ class _AddAddressViewState extends State<AddAddressView> {
                     children: [
                       Expanded(
                         child: LineTextField(
-                            title: "City",
-                            placeholder: "Enter City",
+                            title: "Tỉnh/Thành phố",
+                            placeholder: "Nhập tỉnh/thành phố",
                             controller: addressVM.txtCity.value),
                       ),
                       const SizedBox(

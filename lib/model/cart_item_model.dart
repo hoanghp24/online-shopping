@@ -11,20 +11,20 @@ class CartItemModel {
   String? unitName;
   String? unitValue;
   String? nutritionWeight;
-  double? price;
+  int? price;
   String? createdDate;
   String? modifyDate;
   String? catName;
   int? isFav;
   String? brandName;
   String? typeName;
-  double? offerPrice;
+  int? offerPrice;
   String? startDate;
   String? endDate;
   int? isOfferActive;
   String? image;
-  double? itemPrice;
-  double? totalPrice;
+  int? itemPrice;
+  int? totalPrice;
 
   CartItemModel(
       {this.cartId,

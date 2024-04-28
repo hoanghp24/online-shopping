@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shop_app/common/globs.dart';
+import 'package:shop_app/view/login/login_view.dart';
 import 'package:shop_app/view/login/welcome_view.dart';
 import 'package:shop_app/view/main_tabview/main_tabview.dart';
 
@@ -34,6 +35,6 @@ class SplashViewModel extends GetxController {
   void logout() {
     userPayload.value = UserPayloadModel();
     Globs.udBoolSet(false, Globs.userLogin);
-    Get.to(() => const WelcomeView());
+    Get.to(() => const LogInView());
   }
 }

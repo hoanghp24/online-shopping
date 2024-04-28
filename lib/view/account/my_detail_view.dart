@@ -52,8 +52,8 @@ class _MyDetailViewState extends State<MyDetailView> {
               height: 20,
             )),
         centerTitle: true,
-        title: Text(
-          "My Details",
+        title: const Text(
+          "Thông tin cá nhân",
           style: TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
@@ -69,15 +69,15 @@ class _MyDetailViewState extends State<MyDetailView> {
               Column(
                 children: [
                   LineTextField(
-                      title: "Username",
-                      placeholder: "Enter you username",
+                      title: "Tên người dùng",
+                      placeholder: "Nhập tên người dùng",
                       controller: detailVM.txtUsername.value),
                   const SizedBox(
                     height: 15,
                   ),
                   LineTextField(
-                      title: "Name",
-                      placeholder: "Enter you name",
+                      title: "Tên",
+                      placeholder: "Nhập tên của bạn",
                       controller: detailVM.txtName.value),
                   const SizedBox(
                     height: 15,
@@ -85,8 +85,8 @@ class _MyDetailViewState extends State<MyDetailView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Mobile Number",
+                      const Text(
+                        "Số điện thoại",
                         style: TextStyle(
                             color: TColor.textTittle,
                             fontSize: 16,
@@ -120,7 +120,7 @@ class _MyDetailViewState extends State<MyDetailView> {
                                 ),
                                 Text(
                                   countryCode.dialCode,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: TColor.primaryText,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
@@ -134,8 +134,8 @@ class _MyDetailViewState extends State<MyDetailView> {
                           border: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           focusedBorder: InputBorder.none,
-                          hintText: "Mobile Number",
-                          hintStyle: TextStyle(
+                          hintText: "Số điện thoại",
+                          hintStyle: const TextStyle(
                               color: TColor.placeholder, fontSize: 17),
                         ),
                       ),
@@ -152,7 +152,7 @@ class _MyDetailViewState extends State<MyDetailView> {
                 height: 25,
               ),
               RoundButton(
-                  title: "Update",
+                  title: "Cập nhật",
                   onPressed: () {
                     detailVM.serviceCallUpdate(() {
                       Navigator.pop(context);
@@ -165,8 +165,8 @@ class _MyDetailViewState extends State<MyDetailView> {
                 onPressed: () {
                   Get.to(() => const ChangePasswordView());
                 },
-                child: Text(
-                  "Change Password",
+                child: const Text(
+                  "Đổi mật khẩu",
                   style: TextStyle(
                       color: TColor.primary,
                       fontSize: 18,

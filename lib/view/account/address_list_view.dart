@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/model/address_model.dart';
-import 'package:shop_app/view_model/addres_view_mode.dart';
+import 'package:shop_app/view_model/addres_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../common_widget/address_row.dart';
@@ -28,21 +30,15 @@ class _AddressListViewState extends State<AddressListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: TAppBar(
           backgroundColor: Colors.white,
-          elevation: 0.5,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Image.asset(
-                "assets/img/back.png",
-                width: 20,
-                height: 20,
-              )),
+          showBackArrow: true,
+          onPressed: () {
+            Get.back();
+          },
           centerTitle: true,
-          title: Text(
-            "Delivery Address",
+          title: const Text(
+            "Địa chỉ nhận hàng",
             style: TextStyle(
                 color: TColor.primaryText,
                 fontSize: 20,
@@ -56,12 +52,11 @@ class _AddressListViewState extends State<AddressListView> {
                   await Get.to(() => const AddAddressView());
                   addressVM.serviceCallList();
                 },
-                icon: Image.asset(
-                  "assets/img/add.png",
-                  width: 20,
-                  height: 20,
-                  color: TColor.primaryText,
-                )),
+                icon: const Icon(
+                  Iconsax.add,
+                  color: Colors.black,
+                  size: 30,
+                ))
           ]),
       backgroundColor: Colors.white,
       body: Obx(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/view/account/payment_method_view.dart';
 import 'package:shop_app/view/account/promo_code_view.dart';
+import 'package:shop_app/view_model/my_detail_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../common_widget/account_row.dart';
@@ -20,6 +21,7 @@ class AccountView extends StatefulWidget {
 
 class _AccountViewState extends State<AccountView> {
   final splashVM = Get.find<SplashViewModel>();
+  final detailVM = Get.put(MyDetailViewModel());
 
   @override
   Widget build(BuildContext context) {
@@ -48,28 +50,16 @@ class _AccountViewState extends State<AccountView> {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Code For Any",
-                            style: TextStyle(
-                                color: TColor.primaryText,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700),
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Icon(
-                            Icons.edit,
-                            color: TColor.primary,
-                            size: 18,
-                          )
-                        ],
+                      Text(
+                        splashVM.userPayload.value.name ?? "Anonymous",
+                        style: const TextStyle(
+                            color: TColor.primaryText,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        "codeforany@gmail.com",
-                        style: TextStyle(
+                        "${splashVM.userPayload.value.email}",
+                        style: const TextStyle(
                             color: TColor.secondaryText, fontSize: 16),
                       )
                     ],
@@ -82,21 +72,21 @@ class _AccountViewState extends State<AccountView> {
               height: 1,
             ),
             AccountRow(
-              title: "My Orders",
+              title: "Đơn hàng của tôi",
               icon: "assets/img/a_order.png",
               onPressed: () {
                 Get.to(() => const MyOrdersView());
               },
             ),
             AccountRow(
-              title: "My Details",
+              title: "Thông tin cá nhân",
               icon: "assets/img/a_my_detail.png",
               onPressed: () {
                 Get.to(() => const MyDetailView());
               },
             ),
             AccountRow(
-              title: "Delivery Address",
+              title: "Sổ địa chị",
               icon: "assets/img/a_delivery_address.png",
               onPressed: () {
                 Navigator.push(
@@ -106,14 +96,14 @@ class _AccountViewState extends State<AccountView> {
               },
             ),
             AccountRow(
-              title: "Payment Methods",
+              title: "Thẻ thanh toán",
               icon: "assets/img/paymenth_methods.png",
               onPressed: () {
                 Get.to(() => const PaymentMethodListView());
               },
             ),
             AccountRow(
-              title: "Promo Code",
+              title: "Mã giảm giá",
               icon: "assets/img/a_promocode.png",
               onPressed: () {
                 Navigator.push(
@@ -123,19 +113,19 @@ class _AccountViewState extends State<AccountView> {
               },
             ),
             AccountRow(
-              title: "Notifications",
+              title: "Thông báo",
               icon: "assets/img/a_noitification.png",
               onPressed: () {
                 Get.to(() => const NotificationListView());
               },
             ),
             AccountRow(
-              title: "Help",
+              title: "Trợ giúp",
               icon: "assets/img/a_help.png",
               onPressed: () {},
             ),
             AccountRow(
-              title: "About",
+              title: "Giới thiệu",
               icon: "assets/img/a_about.png",
               onPressed: () {},
             ),
@@ -150,33 +140,20 @@ class _AccountViewState extends State<AccountView> {
                     },
                     height: 60,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(19)),
+                        borderRadius: BorderRadius.circular(100)),
                     minWidth: double.maxFinite,
                     elevation: 0.1,
                     color: const Color(0xffF2F3F2),
-                    child: Stack(
+                    child: const Stack(
                       alignment: Alignment.centerLeft,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Log Out",
-                              style: TextStyle(
-                                  color: TColor.primary,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ],
+                        Text(
+                          "Đăng xuất",
+                          style: TextStyle(
+                              color: TColor.primary,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600),
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Image.asset(
-                            "assets/img/logout.png",
-                            width: 20,
-                            height: 20,
-                          ),
-                        )
                       ],
                     ),
                   )

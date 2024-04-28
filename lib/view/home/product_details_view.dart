@@ -2,6 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
+import 'package:shop_app/view/product_reviews/product_reviews.dart';
 
 import '../../common/color_extension.dart';
 import '../../common_widget/round_button.dart';
@@ -47,9 +50,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                 Container(
                   width: double.maxFinite,
                   height: media.width * 0.8,
-                  decoration: BoxDecoration(
-                      color: const Color(0xffF2F3F2),
-                      borderRadius: BorderRadius.circular(15)),
                   alignment: Alignment.center,
                   child: CachedNetworkImage(
                     imageUrl: detailVM.pObj.image ?? "",
@@ -58,37 +58,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error),
-                    width: media.width * 0.8,
+                    width: double.infinity,
                   ),
                 ),
-                SafeArea(
-                  child: AppBar(
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                      leading: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Image.asset(
-                            "assets/img/back.png",
-                            width: 20,
-                            height: 20,
-                          )),
-                      actions: [
-                        IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: Image.asset(
-                              "assets/img/share.png",
-                              width: 20,
-                              height: 20,
-                            )),
-                      ]),
+                TAppBar(
+                  backgroundColor: Colors.transparent,
+                  showBackArrow: true,
+                  onPressed: () => Get.back(),
                 ),
               ],
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: Column(
@@ -99,10 +78,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                       Expanded(
                         child: Text(
                           detailVM.pObj.name ?? "",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: TColor.primaryText,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700),
+                              fontSize: 23,
+                              fontWeight: FontWeight.w600),
                         ),
                       ),
                       Obx(
@@ -110,56 +89,47 @@ class _ProductDetailsState extends State<ProductDetails> {
                           onPressed: () {
                             detailVM.serviceCallAddRemoveFavorite();
                           },
-                          icon: Image.asset(
-                            detailVM.isFav.value
-                                ? "assets/img/favorite.png"
-                                : "assets/img/fav.png",
-                            width: 25,
-                            height: 25,
-                          ),
+                          icon: !detailVM.isFav.value
+                              ? const Icon(
+                                  Iconsax.heart,
+                                )
+                              : const Icon(Iconsax.heart5, color: Colors.red),
                         ),
                       ),
                     ],
                   ),
                   Text(
-                    "${detailVM.pObj.unitValue ?? ""}${detailVM.pObj.unitName ?? ""}, Price",
-                    style: TextStyle(
+                    detailVM.pObj.typeName ?? "",
+                    style: const TextStyle(
                         color: TColor.secondaryText,
                         fontSize: 16,
                         fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 15),
                   Row(
                     children: [
                       InkWell(
                         onTap: () {
                           detailVM.addSubQTY(isAdd: false);
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Image.asset(
-                            "assets/img/subtack.png",
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
+                        child: const Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Icon(Icons.remove, color: Colors.grey)),
                       ),
                       Container(
-                        width: 45,
-                        height: 45,
+                        width: 35,
+                        height: 35,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(
                               color: TColor.placeholder.withOpacity(0.5),
                               width: 1),
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                         alignment: Alignment.center,
                         child: Obx(() => Text(
                               detailVM.qty.value.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: TColor.primaryText,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600),
@@ -169,20 +139,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                         onTap: () {
                           detailVM.addSubQTY(isAdd: true);
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Image.asset(
-                            "assets/img/add_green.png",
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
+                        child: const Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Icon(Icons.add, color: TColor.primary)),
                       ),
                       const Spacer(),
                       Obx(
                         () => Text(
-                          "\$${detailVM.getPrice()}",
-                          style: TextStyle(
+                          detailVM.getPrice(),
+                          style: const TextStyle(
                               color: TColor.primaryText,
                               fontSize: 24,
                               fontWeight: FontWeight.w700),
@@ -202,35 +167,28 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                   Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: Text(
-                          "Product Detail",
+                          "Mô tả ngắn gọn",
                           style: TextStyle(
                               color: TColor.primaryText,
                               fontSize: 16,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
-                      Obx(
-                        () => IconButton(
-                            onPressed: () {
-                              detailVM.showDetail();
-                            },
-                            icon: Image.asset(
-                              detailVM.isShowDetail.value
-                                  ? "assets/img/detail_open.png"
-                                  : "assets/img/next.png",
-                              width: 15,
-                              height: 15,
-                              color: TColor.primaryText,
-                            )),
-                      ),
+                      Obx(() => IconButton(
+                          onPressed: () {
+                            detailVM.showDetail();
+                          },
+                          icon: Icon(!detailVM.isShowDetail.value
+                              ? Iconsax.arrow_right_3
+                              : Iconsax.arrow_down_1))),
                     ],
                   ),
                   Obx(() => detailVM.isShowDetail.value
                       ? Text(
                           detailVM.pObj.detail ?? "",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: TColor.secondaryText,
                               fontSize: 13,
                               fontWeight: FontWeight.w500),
@@ -248,28 +206,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                   Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: Text(
-                          "Nutritions",
+                          "Kiểu dáng",
                           style: TextStyle(
                               color: TColor.primaryText,
                               fontSize: 16,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 4, horizontal: 8),
-                        decoration: BoxDecoration(
-                          color: TColor.placeholder.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          detailVM.pObj.nutritionWeight ?? "100gr",
-                          style: TextStyle(
-                              color: TColor.secondaryText,
-                              fontSize: 9,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -278,49 +220,21 @@ class _ProductDetailsState extends State<ProductDetails> {
                           onPressed: () {
                             detailVM.showNutrition();
                           },
-                          icon: Image.asset(
-                            detailVM.isShowNutrition.value
-                                ? "assets/img/detail_open.png"
-                                : "assets/img/next.png",
-                            width: 15,
-                            height: 15,
-                            color: TColor.primaryText,
-                          ),
+                          icon: Icon(!detailVM.isShowNutrition.value
+                              ? Iconsax.arrow_right_3
+                              : Iconsax.arrow_down_1),
                         ),
                       )
                     ],
                   ),
                   Obx(() => detailVM.isShowNutrition.value
-                      ? ListView.separated(
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            var nObj = detailVM.nutritionList[index];
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  nObj.nutritionName ?? "",
-                                  style: TextStyle(
-                                      color: TColor.secondaryText,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                Text(
-                                  nObj.nutritionValue ?? "",
-                                  style: TextStyle(
-                                      color: TColor.primaryText,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600),
-                                )
-                              ],
-                            );
-                          },
-                          separatorBuilder: (context, index) => const Divider(
-                                color: Colors.black12,
-                              ),
-                          itemCount: detailVM.nutritionList.length)
+                      ? Text(
+                          detailVM.pObj.nutritionWeight ?? "",
+                          style: const TextStyle(
+                              color: TColor.secondaryText,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500),
+                        )
                       : Container()),
                   const SizedBox(
                     height: 8,
@@ -334,9 +248,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                   Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: Text(
-                          "Review",
+                          "Đánh giá",
                           style: TextStyle(
                               color: TColor.primaryText,
                               fontSize: 16,
@@ -364,50 +278,26 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {},
-                          icon: Image.asset(
-                            "assets/img/next.png",
-                            width: 15,
-                            height: 15,
-                            color: TColor.primaryText,
-                          )),
+                          onPressed: () {
+                            Get.to(() => const ProductReviewScreen());
+                          },
+                          icon: const Icon(Iconsax.arrow_right_3)),
                     ],
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  const SizedBox(height: 24),
                   RoundButton(
-                    title: "Add To Basket",
+                    title: "Thêm vào giỏ",
                     onPressed: () {
                       CartViewModel.serviceCallAddToCart(
-                          widget.pObj.prodId ?? 0, detailVM.qty.value , () {
-                            Navigator.pop(context);
-                          });
+                          widget.pObj.prodId ?? 0, detailVM.qty.value, () {
+                        Navigator.pop(context);
+                      });
                     },
                   ),
+                  const SizedBox(height: 40),
                 ],
               ),
             )
-            // Text(
-            //   "Loging",
-            //   style: TextStyle(
-            //       color: TColor.primaryText,
-            //       fontSize: 26,
-            //       fontWeight: FontWeight.w600),
-            // ),
-            // SizedBox(
-            //   height: media.width * 0.03,
-            // ),
-            // Text(
-            //   "Enter your emails and password",
-            //   style: TextStyle(
-            //       color: TColor.secondaryText,
-            //       fontSize: 16,
-            //       fontWeight: FontWeight.w500),
-            // ),
-            // SizedBox(
-            //   height: media.width * 0.1,
-            // ),
           ],
         ),
       ),

@@ -26,7 +26,12 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
             width: media.width, height: media.height, fit: BoxFit.cover),
       ),
       Scaffold(
-        appBar: const TAppBar(showBackArrow: true),
+        appBar: TAppBar(
+          showBackArrow: true,
+          onPressed: () {
+            Get.back();
+          },
+        ),
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: SingleChildScrollView(

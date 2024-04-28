@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/notification_row.dart';
 import 'package:shop_app/model/address_model.dart';
 
@@ -27,40 +28,35 @@ class _NotificationListViewState extends State<NotificationListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.5,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Image.asset(
-                "assets/img/back.png",
-                width: 20,
-                height: 20,
-              )),
-          centerTitle: true,
-          title: Text(
-            "Notifications",
-            style: TextStyle(
-                color: TColor.primaryText,
-                fontSize: 20,
-                fontWeight: FontWeight.w700),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                notiVM.serviceCallReadAll();
-              },
-              child: Text(
-                "Read All",
-                style: TextStyle(
-                    color: TColor.primary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700),
-              ),
-            )
-          ]),
+      appBar: TAppBar(
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: const Text(
+          "Thông báo",
+          style: TextStyle(
+              color: TColor.primaryText,
+              fontSize: 20,
+              fontWeight: FontWeight.w700),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              notiVM.serviceCallReadAll();
+            },
+            child: const Text(
+              "Đọc tất cả",
+              style: TextStyle(
+                  color: TColor.primary,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500),
+            ),
+          )
+        ],
+        showBackArrow: true,
+        onPressed: () {
+          Get.back();
+        },
+      ),
       backgroundColor: Colors.white,
       body: Obx(
         () => ListView.builder(

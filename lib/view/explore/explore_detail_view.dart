@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/product_cell.dart';
 
 import '../../common/color_extension.dart';
@@ -36,19 +37,10 @@ class _ExploreDetailViewState extends State<ExploreDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
+      appBar: TAppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              "assets/img/back.png",
-              width: 20,
-              height: 20,
-            )),
+        showBackArrow: true,
         actions: [
           IconButton(
               onPressed: () {
@@ -65,27 +57,25 @@ class _ExploreDetailViewState extends State<ExploreDetailView> {
         ],
         title: Text(
           widget.eObj.catName ?? "",
-          style: TextStyle(
+          style: const TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
               fontWeight: FontWeight.w700),
         ),
+        onPressed: () {
+          Get.back();
+        },
       ),
       body: Obx(
         () => GridView.builder(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.75,
-              crossAxisSpacing: 15,
-              mainAxisSpacing: 15),
+              crossAxisCount: 2, childAspectRatio: 0.7),
           itemCount: listVM.listArr.length,
           itemBuilder: ((context, index) {
             var pObj = listVM.listArr[index];
             return ProductCell(
               pObj: pObj,
-              margin: 0,
-              weight: double.maxFinite,
               onPressed: () async {
                 await Get.to(() => ProductDetails(
                       pObj: pObj,

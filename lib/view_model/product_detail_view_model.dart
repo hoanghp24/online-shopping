@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shop_app/common/formatter.dart';
 import 'package:shop_app/model/image_model.dart';
 import 'package:shop_app/model/nutrition_model.dart';
 import 'package:shop_app/model/offer_product_model.dart';
@@ -22,8 +23,8 @@ class ProductDetailViewMode extends GetxController {
   }
 
   String getPrice() {
-    return ((pObj.offerPrice ?? pObj.price ?? 0.0) * qty.value)
-        .toStringAsFixed(2);
+    num totalPrice = (pObj.offerPrice ?? pObj.price ?? 0.0) * qty.value;
+    return Formatter.formatCurrency(totalPrice.toInt());
   }
 
   void addSubQTY({isAdd = true}) {

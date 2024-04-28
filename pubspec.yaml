@@ -15,14 +15,23 @@ dependencies:
   get: ^4.6.5
   http: ^1.1.0
   intl: ^0.18.1
+
+  slide_countdown: ^1.5.2
+  carousel_slider: ^4.2.1
   device_preview: ^1.1.0
-  cupertino_icons: ^1.0.2
+  readmore: ^2.2.0
+
   flutter_timezone: ^1.0.6
   flutter_rating_bar: ^4.0.1
   shared_preferences: ^2.2.0
   flutter_easyloading: ^3.0.5
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.3.1
   fl_country_code_picker: ^0.1.5
+
+  #Icons
+  iconsax: ^0.0.8
+  ionicons: ^0.2.2
+  cupertino_icons: ^1.0.2
 
 dependency_overrides:
   intl: ^0.18.1
@@ -32,6 +41,12 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/img/icon_app.png"
 
 flutter:
   uses-material-design: true

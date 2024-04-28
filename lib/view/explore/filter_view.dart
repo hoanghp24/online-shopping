@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/round_button.dart';
 
 import '../../common/color_extension.dart';
@@ -17,38 +19,38 @@ class _FilterViewState extends State<FilterView> {
   List filterCatArr = [
     {
       "id": "1",
-      "name": "Eggs",
+      "name": "Quần dài",
     },
     {
       "id": "2",
-      "name": "Noodles & Pasta",
+      "name": "Áo thun",
     },
     {
       "id": "3",
-      "name": "Chips & Crisps",
+      "name": "Áo hoodie",
     },
     {
       "id": "4",
-      "name": "Fast Food",
+      "name": "Áo khoác",
     },
   ];
 
   List filterBrandArr = [
     {
       "id": "1",
-      "name": "Individual Callection",
+      "name": "Nike",
     },
     {
       "id": "2",
-      "name": "Cocola",
+      "name": "Gucci",
     },
     {
       "id": "3",
-      "name": "Ifad",
+      "name": "Hermès",
     },
     {
       "id": "4",
-      "name": "Kazi Farmas",
+      "name": "Louis Vuitton",
     },
   ];
 
@@ -56,26 +58,20 @@ class _FilterViewState extends State<FilterView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
+        appBar: TAppBar(
           backgroundColor: Colors.transparent,
-          elevation: 0,
           centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Image.asset(
-                "assets/img/close.png",
-                width: 20,
-                height: 20,
-              )),
-          title: Text(
-            "Filters",
+          showBackArrow: true,
+          title: const Text(
+            "Bộ lọc",
             style: TextStyle(
                 color: TColor.primaryText,
                 fontSize: 20,
                 fontWeight: FontWeight.w700),
           ),
+          onPressed: () {
+            Get.back();
+          },
         ),
         body: Container(
           padding: const EdgeInsets.all(20),
@@ -90,10 +86,10 @@ class _FilterViewState extends State<FilterView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
-                          "Categories",
+                          "Danh mục",
                           style: TextStyle(
                               color: TColor.primaryText,
                               fontSize: 24,
@@ -119,10 +115,10 @@ class _FilterViewState extends State<FilterView> {
                       const SizedBox(
                         height: 15,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
-                          "Brand",
+                          "Thương hiệu",
                           style: TextStyle(
                               color: TColor.primaryText,
                               fontSize: 24,
@@ -149,7 +145,7 @@ class _FilterViewState extends State<FilterView> {
                   ),
                 ),
               ),
-              RoundButton(title: "Apply Filter", onPressed: () {})
+              RoundButton(title: "Áp dụng", onPressed: () {})
             ],
           ),
         ));

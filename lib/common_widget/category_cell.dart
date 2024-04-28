@@ -1,60 +1,60 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/common/color_extension.dart';
-
-import '../model/type_model.dart';
+import 'package:shop_app/common_widget/rounded_image.dart';
+import 'package:shop_app/model/type_model.dart';
 
 class CategoryCell extends StatelessWidget {
-  final TypeModel pObj;
-  final VoidCallback onPressed;
+  const CategoryCell({
+    super.key,
+    this.textColor = Colors.black,
+    this.backgroundColor,
+    this.onTap,
+    this.radius = 100,
+    this.height = 60,
+    this.width = 60,
+    required this.pObj,
+  });
 
-  const CategoryCell({super.key, required this.pObj, required this.onPressed});
+  final TypeModel pObj;
+
+  final Color textColor;
+  final Color? backgroundColor;
+  final void Function()? onTap;
+  final double radius, height, width;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        width: 250,
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: (pObj.color ?? TColor.primary).withOpacity(0.3),
-          borderRadius: BorderRadius.circular(15),
-        ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 8),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CachedNetworkImage(
-                  imageUrl: pObj.image ?? "",
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  width: 70,
-                  height: 70,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Expanded(
-                  child: Text(
-                    pObj.typeName ?? "",
+
+            ///Circular icon
+            children: [
+              RoundedImage(
+                isNetworkImage: true,
+                radius: radius,
+                height: height,
+                width: width,
+                backgroundColor: Colors.white,
+                imageUrl: pObj.image!,
+                fit: BoxFit.fill,
+              ),
+
+              ///Text
+              const SizedBox(height: 4),
+              SizedBox(
+                width: 55,
+                child: Text(pObj.typeName!,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: TColor.primaryText,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: textColor),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis),
+              )
+            ]),
       ),
     );
   }

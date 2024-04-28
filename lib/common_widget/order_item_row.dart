@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/common/color_extension.dart';
+import 'package:shop_app/common/formatter.dart';
 import 'package:shop_app/model/product_detail_model.dart';
 
 class OrderItemRow extends StatelessWidget {
@@ -45,17 +46,17 @@ class OrderItemRow extends StatelessWidget {
                       children: [
                         Text(
                           pObj.name ?? "",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: TColor.primaryText,
                               fontSize: 16,
-                              fontWeight: FontWeight.w700),
+                              fontWeight: FontWeight.w600),
                         ),
                         const SizedBox(
                           height: 2,
                         ),
                         Text(
-                          "${pObj.unitValue}${pObj.unitName} Price",
-                          style: TextStyle(
+                          "${pObj.catName}",
+                          style: const TextStyle(
                               color: TColor.secondaryText,
                               fontSize: 14,
                               fontWeight: FontWeight.w500),
@@ -65,8 +66,8 @@ class OrderItemRow extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Text(
-                              "QTY :",
+                            const Text(
+                              "SL :",
                               style: TextStyle(
                                   color: TColor.primaryText,
                                   fontSize: 16,
@@ -77,7 +78,7 @@ class OrderItemRow extends StatelessWidget {
                             ),
                             Text(
                               (pObj.qty ?? 0).toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: TColor.primaryText,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600),
@@ -85,7 +86,7 @@ class OrderItemRow extends StatelessWidget {
                             const SizedBox(
                               width: 8,
                             ),
-                            Text(
+                            const Text(
                               "×",
                               style: TextStyle(
                                   color: TColor.primaryText,
@@ -96,16 +97,16 @@ class OrderItemRow extends StatelessWidget {
                               width: 8,
                             ),
                             Text(
-                              "\$${(pObj.itemPrice ?? 0).toStringAsFixed(2)}",
-                              style: TextStyle(
+                              Formatter.formatCurrency(pObj.itemPrice ?? 0),
+                              style: const TextStyle(
                                   color: TColor.primaryText,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600),
                             ),
                             const Spacer(),
                             Text(
-                              "\$${(pObj.totalPrice ?? 0).toStringAsFixed(2)}",
-                              style: TextStyle(
+                              Formatter.formatCurrency(pObj.totalPrice ?? 0),
+                              style: const TextStyle(
                                   color: TColor.primaryText,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600),

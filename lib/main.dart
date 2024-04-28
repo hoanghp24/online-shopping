@@ -17,11 +17,7 @@ void main() async {
   HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance();
-  // runApp(const MyApp());
-  runApp(DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => const MyApp(), // Wrap your app
-  ));
+  runApp(const MyApp());
 }
 
 void configLoading() {
@@ -45,7 +41,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Online Shopping',
+      title: 'WearMe Store',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "Inter",

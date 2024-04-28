@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/model/promo_code_model.dart';
 
 import '../../common/color_extension.dart';
@@ -27,37 +28,31 @@ class _PromoCodeViewState extends State<PromoCodeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: TAppBar(
         backgroundColor: Colors.white,
-        elevation: 0.5,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              "assets/img/back.png",
-              width: 20,
-              height: 20,
-            )),
+        showBackArrow: true,
         centerTitle: true,
-        title: Text(
-          "Promo Code",
+        title: const Text(
+          "Mã giảm giá",
           style: TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
               fontWeight: FontWeight.w700),
         ),
+        onPressed: () {
+          Get.back();
+        },
       ),
       backgroundColor: Colors.white,
       body: Obx(
         () => promoVM.listArr.isEmpty
-            ? Center(
+            ? const Center(
                 child: Text(
-                  "No Any Promo Code Available",
+                  "Hiện chưa có mã giảm giá nào",
                   style: TextStyle(
                       color: TColor.primaryText,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600),
                 ),
               )
             : ListView.separated(

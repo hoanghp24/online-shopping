@@ -1,5 +1,5 @@
 class OfferProductModel {
-  double? offerPrice;
+  int? offerPrice;
   String? startDate;
   String? endDate;
   int? prodId;
@@ -11,7 +11,7 @@ class OfferProductModel {
   String? unitName;
   String? unitValue;
   String? nutritionWeight;
-  double? price;
+  int? price;
   String? image;
   String? catName;
   String? typeName;

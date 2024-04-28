@@ -56,7 +56,6 @@ class LoginViewModel extends GetxController {
         Get.delete<LoginViewModel>();
         Get.find<SplashViewModel>().goAfterLoginMainTab();
       } else {}
-
       Get.snackbar(Globs.appName, resObj["message"].toString());
     }, failure: (err) async {
       Globs.hideHUD();

@@ -7,7 +7,7 @@ import 'package:flutter_timezone/flutter_timezone.dart';
 import '../main.dart';
 
 class Globs {
-  static const appName = "Online Groceries";
+  static const appName = "WearMe Store";
 
   static const userPayload = "user_payload";
   static const userLogin = "user_login";
@@ -80,7 +80,7 @@ class Globs {
 }
 
 class SVKey {
-  static const mainUrl = "http://localhost:3001";
+  static const mainUrl = "https://online-shopping-node-api.onrender.com";
   static const baseUrl = '$mainUrl/api/app/';
   static const nodeUrl = mainUrl;
 
@@ -108,7 +108,8 @@ class SVKey {
   static const svRemovePaymentMethod = '${baseUrl}remove_payment_method';
   static const svPaymentMethodList = '${baseUrl}payment_method';
 
-  static const svMarkDefaultDeliveryAddress = '${baseUrl}mark_default_delivery_address';
+  static const svMarkDefaultDeliveryAddress =
+      '${baseUrl}mark_default_delivery_address';
 
   static const svPromoCodeList = '${baseUrl}promo_code_list';
   static const svMyOrders = '${baseUrl}my_order';
@@ -121,7 +122,8 @@ class SVKey {
   static const svChangePassword = '${baseUrl}change_password';
   static const svForgotPasswordRequest = '${baseUrl}forgot_password_request';
   static const svForgotPasswordVerify = '${baseUrl}forgot_password_verify';
-  static const svForgotPasswordSetPassword = '${baseUrl}forgot_password_set_password';
+  static const svForgotPasswordSetPassword =
+      '${baseUrl}forgot_password_set_password';
 }
 
 class KKey {

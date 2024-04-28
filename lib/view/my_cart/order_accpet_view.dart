@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shop_app/common_widget/my_order_row.dart';
 import 'package:shop_app/common_widget/round_button.dart';
+import 'package:shop_app/view/account/my_order_detail_view.dart';
+import 'package:shop_app/view/account/my_order_view.dart';
 
 import '../../common/color_extension.dart';
 
@@ -38,8 +42,8 @@ class _OrderAcceptViewState extends State<OrderAcceptView> {
                   const SizedBox(
                     height: 40,
                   ),
-                  Text(
-                    "Your Order has been\naccepted",
+                  const Text(
+                    "Đặt hàng thành công",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: TColor.primaryText,
@@ -49,8 +53,8 @@ class _OrderAcceptViewState extends State<OrderAcceptView> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    "Your items has been placcd and is on\nit’s way to being processed",
+                  const Text(
+                    "Đơn hàng của bạn sẽ được xác nhận và giao hàng trong thời gian sớm nhất",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: TColor.secondaryText,
@@ -59,13 +63,12 @@ class _OrderAcceptViewState extends State<OrderAcceptView> {
                   ),
                   const Spacer(),
                   const Spacer(),
-                  RoundButton(title: "Track Order", onPressed: () {}),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text(
-                      "Back to home",
+                    child: const Text(
+                      "Tiếp tục mua sắm",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           color: TColor.primaryText,

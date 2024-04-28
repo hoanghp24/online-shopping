@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_app/common_widget/product_cell.dart';
 import 'package:shop_app/common_widget/round_button.dart';
+import 'package:shop_app/view/home/product_details_view.dart';
+import 'package:shop_app/view_model/cart_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../common_widget/favourite_row.dart';
@@ -23,8 +26,8 @@ class _FavoritesViewState extends State<FavoritesView> {
         backgroundColor: Colors.white,
         elevation: 0.5,
         centerTitle: true,
-        title: Text(
-          "Favorites",
+        title: const Text(
+          "Mục yêu thích",
           style: TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
@@ -35,29 +38,38 @@ class _FavoritesViewState extends State<FavoritesView> {
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          ListView.separated(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              itemCount: favVM.listArr.length,
-              separatorBuilder: (context, index) => const Divider(
-                    color: Colors.black26,
-                    height: 1,
+          favVM.listArr.isEmpty
+              ? const Center(
+                  child: Text(
+                    "Chưa có sản phẩm yêu thích nào",
+                    style: TextStyle(
+                        color: TColor.primaryText,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
                   ),
-              itemBuilder: (context, index) {
-                var pObj = favVM.listArr[index];
-                return FavoriteRow(
-                  pObj: pObj,
-                  onPressed: () {},
-                );
-              }),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                RoundButton(title: "Add All To Cart", onPressed: () {})
-              ],
-            ),
-          )
+                )
+              : GridView.builder(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, childAspectRatio: 0.7),
+                  itemCount: favVM.listArr.length,
+                  itemBuilder: ((context, index) {
+                    var pObj = favVM.listArr[index];
+                    return ProductCell(
+                      pObj: pObj,
+                      onPressed: () async {
+                        await Get.to(() => ProductDetails(pObj: pObj));
+
+                        favVM.serviceCalList();
+                      },
+                      onCart: () {
+                        CartViewModel.serviceCallAddToCart(
+                            pObj.prodId ?? 0, 1, () {});
+                      },
+                    );
+                  }),
+                ),
         ],
       ),
     );

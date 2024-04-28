@@ -1,10 +1,10 @@
 class MyOrderModel {
   int? orderId;
   String? cartId;
-  double? totalPrice;
-  double? userPayPrice;
-  double? discountPrice;
-  double? deliverPrice;
+  int? totalPrice;
+  int? userPayPrice;
+  int? discountPrice;
+  int? deliverPrice;
   int? deliverType;
   int? paymentType;
   int? paymentStatus;
@@ -19,10 +19,6 @@ class MyOrderModel {
   String? state;
   String? postalCode;
   List<String>? images;
-
-
-
-  
 
   MyOrderModel(
       {this.orderId,
@@ -43,10 +39,10 @@ class MyOrderModel {
   MyOrderModel.fromJson(Map<String, dynamic> json) {
     orderId = json['order_id'];
     cartId = json['cart_id'];
-    totalPrice = double.tryParse("${json['total_price']}"); 
-    userPayPrice = double.tryParse("${json['user_pay_price']}");
-    discountPrice = double.tryParse("${json['discount_price']}");
-    deliverPrice = double.tryParse("${json['deliver_price']}") ;
+    totalPrice = json['total_price'];
+    userPayPrice = json['user_pay_price'];
+    discountPrice = json['discount_price'];
+    deliverPrice = json['deliver_price'];
     deliverType = json['deliver_type'];
     paymentType = json['payment_type'];
     paymentStatus = json['payment_status'];
@@ -60,7 +56,7 @@ class MyOrderModel {
     city = json['city'];
     state = json['state'];
     postalCode = json['postal_code'];
-    images =  (json['images'] as String? ?? "" ).split(",") ;
+    images = (json['images'] as String? ?? "").split(",");
   }
 
   Map<String, dynamic> toJson() {
