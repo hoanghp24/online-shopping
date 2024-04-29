@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/common/color_extension.dart';
 import 'package:shop_app/common_widget/rounded_image.dart';
 import 'package:shop_app/model/explore_category_model.dart';
 
@@ -31,14 +33,26 @@ class HomeCategories extends StatelessWidget {
 
             ///Circular icon
             children: [
-              RoundedImage(
-                isNetworkImage: true,
-                radius: radius,
-                height: height,
-                width: width,
-                backgroundColor: Colors.white,
-                imageUrl: pObj.image!,
+              CachedNetworkImage(
+                imageUrl: pObj.image ?? "",
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(
+                    color: TColor.primary,
+                  ),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                width: 70,
+                height: 70,
                 fit: BoxFit.cover,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
 
               ///Text

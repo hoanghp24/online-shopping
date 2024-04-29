@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/common/globs.dart';
 import 'package:shop_app/common/service_call.dart';
@@ -24,7 +25,7 @@ class ExploreViewModel extends GetxController {
 
   //ServiceCall
   void serviceCallList() {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({}, SVKey.svExploreList, isToken: true,
         withSuccess: (resObj) async {
       Globs.hideHUD();

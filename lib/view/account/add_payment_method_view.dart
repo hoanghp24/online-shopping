@@ -40,7 +40,7 @@ class _AddPaymentMethodViewState extends State<AddPaymentMethodView> {
             )),
         centerTitle: true,
         title: const Text(
-          "Add Payment Method",
+          "Thêm phương thức thanh toán",
           style: TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
@@ -56,15 +56,15 @@ class _AddPaymentMethodViewState extends State<AddPaymentMethodView> {
               Column(
                 children: [
                   LineTextField(
-                      title: "Name",
-                      placeholder: "Enter you name",
+                      title: "Tên",
+                      placeholder: "Nhập tên",
                       controller: payVM.txtName.value),
                   const SizedBox(
                     height: 15,
                   ),
                   LineTextField(
-                      title: "Card Number",
-                      placeholder: "Enter you Card Number",
+                      title: "Số tài khoản",
+                      placeholder: "Nhập số tài khoản",
                       keyboardType: TextInputType.phone,
                       controller: payVM.txtCardNumber.value),
                   const SizedBox(
@@ -75,7 +75,7 @@ class _AddPaymentMethodViewState extends State<AddPaymentMethodView> {
                       Expanded(
                           child: LineTextField(
                               title: "MM",
-                              placeholder: "Enter MM",
+                              placeholder: "Nhập MM",
                               keyboardType: TextInputType.number,
                               controller: payVM.txtMonth.value)),
                       const SizedBox(
@@ -84,7 +84,7 @@ class _AddPaymentMethodViewState extends State<AddPaymentMethodView> {
                       Expanded(
                           child: LineTextField(
                               title: "YYYY",
-                              placeholder: "Enter YYYY",
+                              placeholder: "Nhập YYYY",
                               keyboardType: TextInputType.number,
                               controller: payVM.txtYear.value))
                     ],
@@ -95,7 +95,7 @@ class _AddPaymentMethodViewState extends State<AddPaymentMethodView> {
                 height: 25,
               ),
               RoundButton(
-                  title: "Add Payment Method",
+                  title: "Thêm",
                   onPressed: () {
                     payVM.serviceCallAdd(() {
                       Navigator.pop(context);

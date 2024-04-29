@@ -32,13 +32,12 @@ class AddressViewModel extends GetxController {
 
   //ServiceCall
   void serviceCallList() {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({}, SVKey.svDeliveryAddress, isToken: true,
         withSuccess: (resObj) async {
       Globs.hideHUD();
 
       if (resObj[KKey.status] == "1") {
-
         clearAll();
         var listDataArr = (resObj[KKey.payload] as List? ?? []).map((oObj) {
           return AddressModel.fromJson(oObj);
@@ -53,8 +52,7 @@ class AddressViewModel extends GetxController {
   }
 
   void serviceCallUpdate(int addressId, VoidCallback didDone) {
-
-     if(txtName.value.text.isEmpty) {
+    if (txtName.value.text.isEmpty) {
       Get.snackbar(Globs.appName, "Please enter name");
       return;
     }
@@ -99,7 +97,7 @@ class AddressViewModel extends GetxController {
 
       if (resObj[KKey.status] == "1") {
         Get.snackbar(Globs.appName, resObj[KKey.message].toString());
-       
+
         didDone();
       } else {}
     }, failure: (err) async {
@@ -145,8 +143,7 @@ class AddressViewModel extends GetxController {
   }
 
   void serviceCallAdd(VoidCallback didDone) {
-
-    if(txtName.value.text.isEmpty) {
+    if (txtName.value.text.isEmpty) {
       Get.snackbar(Globs.appName, "Please enter name");
       return;
     }

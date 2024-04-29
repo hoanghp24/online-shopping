@@ -34,7 +34,7 @@ class HomeViewModel extends GetxController {
 
   //ServiceCall
   void serviceCallHome() {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({}, SVKey.svHome, isToken: true,
         withSuccess: (resObj) async {
       Globs.hideHUD();

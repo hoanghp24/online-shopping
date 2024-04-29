@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:shop_app/common_widget/product_cell.dart';
 import 'package:shop_app/view/home/product_details_view.dart';
 import 'package:shop_app/view_model/cart_view_model.dart';
@@ -38,12 +39,19 @@ class _FavoritesViewState extends State<FavoritesView> {
         children: [
           favVM.listArr.isEmpty
               ? const Center(
-                  child: Text(
-                    "Chưa có sản phẩm yêu thích nào",
-                    style: TextStyle(
-                        color: TColor.primaryText,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Iconsax.box_search, size: 50, color: Colors.grey),
+                      SizedBox(height: 8),
+                      Text(
+                        "Chưa có sản phẩm yêu thích nào",
+                        style: TextStyle(
+                            color: TColor.primaryText,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
                   ),
                 )
               : GridView.builder(

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/model/my_order_model.dart';
 import 'package:shop_app/model/product_detail_model.dart';
@@ -25,7 +26,7 @@ class MyOrderDetailViewModel extends GetxController {
 
   //MARK ServiceCall
   void serviceCallDetail() {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "order_id": mObj.orderId.toString(),
     }, SVKey.svMyOrdersDetail, isToken: true, withSuccess: (resObj) async {

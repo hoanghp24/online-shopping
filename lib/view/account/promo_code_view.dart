@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/model/promo_code_model.dart';
 
@@ -47,12 +48,19 @@ class _PromoCodeViewState extends State<PromoCodeView> {
       body: Obx(
         () => promoVM.listArr.isEmpty
             ? const Center(
-                child: Text(
-                  "Hiện chưa có mã giảm giá nào",
-                  style: TextStyle(
-                      color: TColor.primaryText,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Iconsax.box_search, size: 50, color: Colors.grey),
+                    SizedBox(height: 8),
+                    Text(
+                      "Hiện chưa có mã giảm giá nào",
+                      style: TextStyle(
+                          color: TColor.primaryText,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               )
             : ListView.separated(

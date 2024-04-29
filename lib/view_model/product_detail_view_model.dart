@@ -62,7 +62,7 @@ class ProductDetailViewMode extends GetxController {
 
   //MARK ServiceCall
   void serviceCallProductDetail() {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "prod_id": pObj.prodId.toString(),
     }, SVKey.svProductDetail, isToken: true, withSuccess: (resObj) async {
@@ -93,7 +93,7 @@ class ProductDetailViewMode extends GetxController {
   }
 
   void serviceCallAddRemoveFavorite() {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "prod_id": pObj.prodId.toString(),
     }, SVKey.svAddRemoveFavorite, isToken: true, withSuccess: (resObj) async {

@@ -43,7 +43,7 @@ class _AddAddressViewState extends State<AddAddressView> {
             )),
         centerTitle: true,
         title: Text(
-          widget.isEdit ? "Edit Address" : "Add Address",
+          widget.isEdit ? "Chỉnh sửa địa chỉ" : "Thêm địa chỉ",
           style: const TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
@@ -155,8 +155,8 @@ class _AddAddressViewState extends State<AddAddressView> {
                       ),
                       Expanded(
                         child: LineTextField(
-                            title: "State",
-                            placeholder: "Enter State",
+                            title: "Quận/Huyện",
+                            placeholder: "Nhập quận/huyện",
                             controller: addressVM.txtState.value),
                       )
                     ],
@@ -165,8 +165,8 @@ class _AddAddressViewState extends State<AddAddressView> {
                     height: 15,
                   ),
                   LineTextField(
-                      title: "Postal Code",
-                      placeholder: "Enter you Postal Code",
+                      title: "Mã bưu điện",
+                      placeholder: "Nhập mã bư điện",
                       controller: addressVM.txtPostalCode.value),
                 ],
               ),
@@ -174,7 +174,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                 height: 25,
               ),
               RoundButton(
-                  title: widget.isEdit ? "Update" : "Add Address",
+                  title: widget.isEdit ? "Cập nhật" : "Thêm",
                   onPressed: () {
                     if (widget.isEdit) {
                       addressVM.serviceCallUpdate(widget.aObj?.addressId ?? 0,

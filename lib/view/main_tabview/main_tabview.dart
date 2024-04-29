@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
@@ -27,7 +28,7 @@ class _MainTabViewState extends State<MainTabView>
   void initState() {
     super.initState();
 
-    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
     controller = TabController(length: 4, vsync: this);
     controller?.addListener(() {
       selectTab = controller?.index ?? 0;

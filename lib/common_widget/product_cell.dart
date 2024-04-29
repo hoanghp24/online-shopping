@@ -40,7 +40,9 @@ class ProductCell extends StatelessWidget {
             CachedNetworkImage(
               imageUrl: pObj.image ?? "",
               placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: TColor.primary,
+                ),
               ),
               errorWidget: (context, url, error) => const Icon(Icons.error),
               width: double.infinity,

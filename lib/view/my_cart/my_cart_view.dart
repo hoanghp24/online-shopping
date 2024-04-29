@@ -91,10 +91,10 @@ class _MyCartViewState extends State<MyCartView> {
                           minWidth: double.maxFinite,
                           elevation: 0.1,
                           color: TColor.primary,
-                          child: Stack(
+                          child: const Stack(
                             alignment: Alignment.centerRight,
                             children: [
-                              const Row(
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
@@ -105,22 +105,6 @@ class _MyCartViewState extends State<MyCartView> {
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ],
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.black12,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 4, horizontal: 8),
-                                child: Text(
-                                  Formatter.formatCurrency(
-                                      int.parse(cartVM.cartTotalPrice.value)),
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600),
-                                ),
                               ),
                             ],
                           ),

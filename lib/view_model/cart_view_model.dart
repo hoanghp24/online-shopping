@@ -37,7 +37,7 @@ class CartViewModel extends GetxController {
 
   //ServiceCall
   void serviceCallList() {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "promo_code_id": promoObj.value.promoCodeId?.toString() ?? "",
       "deliver_type": deliveryType.value
@@ -69,7 +69,7 @@ class CartViewModel extends GetxController {
   }
 
   void serviceCallUpdateCart(CartItemModel cObj, int newQty) {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "cart_id": (cObj.cartId ?? 0).toString(),
       "prod_id": (cObj.prodId ?? 0).toString(),
@@ -88,7 +88,7 @@ class CartViewModel extends GetxController {
   }
 
   void serviceCallRemoveCart(CartItemModel cObj) {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "cart_id": (cObj.cartId ?? 0).toString(),
       "prod_id": (cObj.prodId ?? 0).toString(),
@@ -115,7 +115,7 @@ class CartViewModel extends GetxController {
       return;
     }
 
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "address_id": deliveryType.value == "2"
           ? ""
@@ -132,9 +132,9 @@ class CartViewModel extends GetxController {
         Get.back();
         Get.snackbar(Globs.appName, resObj[KKey.message].toString());
 
-        await Future.delayed(const Duration(milliseconds: 100));
+        // await Future.delayed(const Duration(milliseconds: 100));
         serviceCallList();
-        await Future.delayed(const Duration(milliseconds: 100));
+        // await Future.delayed(const Duration(milliseconds: 100));
         Get.to(() => const OrderAcceptView());
       } else {
         Get.snackbar(Globs.appName, resObj[KKey.message].toString());
@@ -146,7 +146,7 @@ class CartViewModel extends GetxController {
   }
 
   static void serviceCallAddToCart(int prodId, int qty, VoidCallback didDone) {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "prod_id": prodId.toString(),
       "qty": qty.toString(),

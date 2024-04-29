@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/model/product_detail_model.dart';
 
@@ -24,7 +25,7 @@ class ExploreItemViewMode extends GetxController {
 
   //MARK ServiceCall
   void serviceCallList() {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "cat_id": pObj.catId.toString(),
     }, SVKey.svExploreItemList, isToken: true, withSuccess: (resObj) async {

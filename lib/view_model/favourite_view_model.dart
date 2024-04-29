@@ -22,7 +22,7 @@ class FavoriteViewModel extends GetxController {
 
   //ServiceCall
   void serviceCalList() {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({}, SVKey.svFavorite, isToken: true,
         withSuccess: (resObj) async {
       Globs.hideHUD();
@@ -41,7 +41,7 @@ class FavoriteViewModel extends GetxController {
   }
 
   void serviceCallAddRemoveFavorite(int index) {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "prod_id": listArr[index].prodId.toString(),
     }, SVKey.svAddRemoveFavorite, isToken: true, withSuccess: (resObj) async {

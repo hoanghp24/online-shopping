@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/my_order_row.dart';
 import 'package:shop_app/view/main_tabview/main_tabview.dart';
@@ -48,12 +49,19 @@ class _MyOrdersViewState extends State<MyOrdersView> {
       body: Obx(
         () => myVM.listArr.isEmpty
             ? const Center(
-                child: Text(
-                  "Chưa có đơn hàng nào",
-                  style: TextStyle(
-                      color: TColor.primaryText,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Iconsax.box_search, size: 50, color: Colors.grey),
+                    SizedBox(height: 8),
+                    Text(
+                      "Chưa có đơn hàng nào",
+                      style: TextStyle(
+                          color: TColor.primaryText,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               )
             : ListView.builder(

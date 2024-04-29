@@ -284,21 +284,22 @@ class _ProductDetailsState extends State<ProductDetails> {
                           icon: const Icon(Iconsax.arrow_right_3)),
                     ],
                   ),
-                  const SizedBox(height: 24),
-                  RoundButton(
-                    title: "Thêm vào giỏ",
-                    onPressed: () {
-                      CartViewModel.serviceCallAddToCart(
-                          widget.pObj.prodId ?? 0, detailVM.qty.value, () {
-                        Navigator.pop(context);
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 40),
                 ],
               ),
             )
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 10, 16, 55),
+        child: RoundButton(
+          title: "Thêm vào giỏ",
+          onPressed: () {
+            CartViewModel.serviceCallAddToCart(
+                widget.pObj.prodId ?? 0, detailVM.qty.value, () {
+              Navigator.pop(context);
+            });
+          },
         ),
       ),
     );

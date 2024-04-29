@@ -35,7 +35,7 @@ class ForgotPasswordViewModel extends GetxController {
       return;
     }
 
-    Globs.showHUD();
+    // Globs.showHUD();
 
     ServiceCall.post({
       "email": txtEmail.value.text,
@@ -61,7 +61,7 @@ class ForgotPasswordViewModel extends GetxController {
       return;
     }
 
-    Globs.showHUD();
+    // Globs.showHUD();
 
     ServiceCall.post({
       "email": txtEmail.value.text,
@@ -92,7 +92,7 @@ class ForgotPasswordViewModel extends GetxController {
       return;
     }
 
-    Globs.showHUD();
+    // Globs.showHUD();
 
     ServiceCall.post({
       "user_id": "${forgotResDict?["user_id"]}",

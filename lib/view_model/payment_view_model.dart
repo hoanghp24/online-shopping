@@ -29,7 +29,7 @@ class PaymentViewModel extends GetxController {
 
   //ServiceCall
   void serviceCallList() {
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({}, SVKey.svPaymentMethodList, isToken: true,
         withSuccess: (resObj) async {
       Globs.hideHUD();
@@ -48,13 +48,11 @@ class PaymentViewModel extends GetxController {
     });
   }
 
-  
-
   void serviceCallRemove(PaymentModel pObj) {
-    Globs.showHUD();
-    ServiceCall.post({"pay_id": (pObj.payId ?? 0).toString()},
-        SVKey.svRemovePaymentMethod, isToken: true,
-        withSuccess: (resObj) async {
+    // Globs.showHUD();
+    ServiceCall.post(
+        {"pay_id": (pObj.payId ?? 0).toString()}, SVKey.svRemovePaymentMethod,
+        isToken: true, withSuccess: (resObj) async {
       Globs.hideHUD();
       if (resObj[KKey.status] == "1") {
         Get.snackbar(Globs.appName, resObj[KKey.message].toString());
@@ -71,7 +69,6 @@ class PaymentViewModel extends GetxController {
     txtCardNumber.value.text = pObj.cardNumber ?? "";
     txtMonth.value.text = pObj.cardMonth ?? "";
     txtYear.value.text = pObj.cardYear ?? "";
-   
   }
 
   void clearAll() {
@@ -79,7 +76,6 @@ class PaymentViewModel extends GetxController {
     txtCardNumber.value.text = "";
     txtMonth.value.text = "";
     txtYear.value.text = "";
-   
   }
 
   void serviceCallAdd(VoidCallback didDone) {
@@ -87,8 +83,6 @@ class PaymentViewModel extends GetxController {
       Get.snackbar(Globs.appName, "Please enter name");
       return;
     }
-
-    
 
     if (txtCardNumber.value.text.length != 16) {
       Get.snackbar(Globs.appName, "Please enter valid card number");
@@ -104,13 +98,12 @@ class PaymentViewModel extends GetxController {
       return;
     }
 
-    Globs.showHUD();
+    // Globs.showHUD();
     ServiceCall.post({
       "name": txtName.value.text,
       "card_number": txtCardNumber.value.text,
       "card_month": txtMonth.value.text,
       "card_year": txtYear.value.text
-      
     }, SVKey.svAddPaymentMethod, isToken: true, withSuccess: (resObj) async {
       Globs.hideHUD();
       if (resObj[KKey.status] == "1") {
