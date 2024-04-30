@@ -35,58 +35,51 @@ class _ExploreDetailViewState extends State<ExploreDetailView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: TAppBar(
-        backgroundColor: Colors.transparent,
-        centerTitle: true,
-        showBackArrow: true,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const FilterView()));
-              },
-              icon: Image.asset(
-                "assets/img/filter_ic.png",
-                width: 20,
-                height: 20,
-              )),
-        ],
-        title: Text(
-          widget.eObj.catName ?? "",
-          style: const TextStyle(
-              color: TColor.primaryText,
-              fontSize: 20,
-              fontWeight: FontWeight.w700),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 45),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: TAppBar(
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          showBackArrow: true,
+          title: Text(
+            widget.eObj.catName ?? "",
+            style: const TextStyle(
+                color: TColor.primaryText,
+                fontSize: 20,
+                fontWeight: FontWeight.w700),
+          ),
+          onPressed: () {
+            Get.back();
+          },
         ),
-        onPressed: () {
-          Get.back();
-        },
-      ),
-      body: Obx(
-        () => GridView.builder(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 0.7),
-          itemCount: listVM.listArr.length,
-          itemBuilder: ((context, index) {
-            var pObj = listVM.listArr[index];
-            return ProductCell(
-              pObj: pObj,
-              onPressed: () async {
-                await Get.to(() => ProductDetails(
-                      pObj: pObj,
-                    ));
-                listVM.serviceCallList();
-              },
-              onCart: () {
-                CartViewModel.serviceCallAddToCart(pObj.prodId ?? 0, 1, () {});
-              },
-            );
-          }),
+        body: Obx(
+          () => GridView.builder(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.72,
+              mainAxisSpacing: 20,
+            ),
+            itemCount: listVM.listArr.length,
+            itemBuilder: ((context, index) {
+              var pObj = listVM.listArr[index];
+              return ProductCell(
+                pObj: pObj,
+                onPressed: () async {
+                  await Get.to(() => ProductDetails(
+                        pObj: pObj,
+                      ));
+                  listVM.serviceCallList();
+                },
+                onCart: () {
+                  // CartViewModel.serviceCallAddToCart(
+                  //     pObj.prodId ?? 0, 1, () {});
+                },
+              );
+            }),
+          ),
         ),
       ),
     );

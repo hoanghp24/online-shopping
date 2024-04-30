@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/common/globs.dart';
 import 'package:shop_app/common/service_call.dart';
@@ -60,11 +61,19 @@ class CartViewModel extends GetxController {
         discountAmount.value = resObj["discount_amount"].toString();
         userPayPrice.value = resObj["user_pay_price"].toString();
 
-        Get.snackbar(Globs.appName, resObj[KKey.message] as String? ?? "Fail");
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message] as String? ?? "Fail");
       }
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
@@ -78,12 +87,16 @@ class CartViewModel extends GetxController {
       Globs.hideHUD();
 
       if (resObj[KKey.status] == "1") {
-        // Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        // Get.snackbar(backgroundColor: Colors.black, colorText: Colors.white,Globs.appName, resObj[KKey.message].toString());
         serviceCallList();
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
@@ -95,23 +108,39 @@ class CartViewModel extends GetxController {
     }, SVKey.svRemoveCart, isToken: true, withSuccess: (resObj) async {
       Globs.hideHUD();
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message].toString());
         serviceCallList();
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
   void serviceCallOrderPlace() {
     if (deliveryType.value == "1" && (deliverObj.value.addressId ?? 0) == 0) {
-      Get.snackbar(Globs.appName, "Vui lòng chọn địa chỉ giao hàng!");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Vui lòng chọn địa chỉ giao hàng!");
       return;
     }
 
     if (paymentType.value == "2" && (paymentObj.value.payId ?? 0) == 0) {
-      Get.snackbar(Globs.appName, "Vui lòng chọn phương thức thanh toán!");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Vui lòng chọn phương thức thanh toán!");
       return;
     }
 
@@ -130,35 +159,53 @@ class CartViewModel extends GetxController {
       Globs.hideHUD();
       if (resObj[KKey.status] == "1") {
         Get.back();
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        // Get.snackbar(backgroundColor: Colors.black, colorText: Colors.white,Globs.appName, resObj[KKey.message].toString());
 
         // await Future.delayed(const Duration(milliseconds: 100));
         serviceCallList();
         // await Future.delayed(const Duration(milliseconds: 100));
         Get.to(() => const OrderAcceptView());
       } else {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message].toString());
       }
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
-  static void serviceCallAddToCart(int prodId, int qty, VoidCallback didDone) {
+  static void serviceCallAddToCart(
+      int prodId, int qty, String size, VoidCallback didDone) {
     // Globs.showHUD();
     ServiceCall.post({
       "prod_id": prodId.toString(),
       "qty": qty.toString(),
+      "size": size,
     }, SVKey.svAddToCart, isToken: true, withSuccess: (resObj) async {
       Globs.hideHUD();
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message].toString());
         didDone();
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 }

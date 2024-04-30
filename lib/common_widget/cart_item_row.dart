@@ -22,7 +22,7 @@ class CartItemRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        height: 120,
+        height: 150,
         padding: const EdgeInsets.symmetric(vertical: 10),
         color: Colors.white,
         child: Column(
@@ -75,7 +75,7 @@ class CartItemRow extends StatelessWidget {
                           height: 2,
                         ),
                         Text(
-                          "${cObj.typeName}",
+                          "Size: ${cObj.size}",
                           style: const TextStyle(
                               color: TColor.secondaryText,
                               fontSize: 14,

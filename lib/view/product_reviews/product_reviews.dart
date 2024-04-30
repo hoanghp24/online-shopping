@@ -13,6 +13,7 @@ class ProductReviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TAppBar(
+        elevation: 0,
         centerTitle: true,
         title: const Text(
           "Đánh giá sản phẩm",

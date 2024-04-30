@@ -3,13 +3,14 @@ class CartItemModel {
   int? userId;
   int? prodId;
   int? qty;
+  String? size;
   int? catId;
   int? brandId;
   int? typeId;
   String? name;
   String? detail;
-  String? unitName;
-  String? unitValue;
+  int? unitName;
+  int? unitValue;
   String? nutritionWeight;
   int? price;
   String? createdDate;
@@ -31,6 +32,7 @@ class CartItemModel {
       this.userId,
       this.prodId,
       this.qty,
+      this.size,
       this.catId,
       this.brandId,
       this.typeId,
@@ -59,6 +61,7 @@ class CartItemModel {
     userId = json['user_id'];
     prodId = json['prod_id'];
     qty = json['qty'];
+    size = json['size'];
     catId = json['cat_id'];
     brandId = json['brand_id'];
     typeId = json['type_id'];
@@ -89,6 +92,7 @@ class CartItemModel {
     data['user_id'] = userId;
     data['prod_id'] = prodId;
     data['qty'] = qty;
+    data['size'] = size;
     data['cat_id'] = catId;
     data['brand_id'] = brandId;
     data['type_id'] = typeId;

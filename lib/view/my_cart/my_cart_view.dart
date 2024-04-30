@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shop_app/common/formatter.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/view/my_cart/checkout_view.dart';
 
 import '../../common/color_extension.dart';
@@ -28,10 +29,10 @@ class _MyCartViewState extends State<MyCartView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: TAppBar(
         backgroundColor: Colors.white,
-        elevation: 0.5,
         centerTitle: true,
+        elevation: 0.5,
         title: const Text(
           "Giỏ hàng",
           style: TextStyle(
@@ -39,6 +40,7 @@ class _MyCartViewState extends State<MyCartView> {
               fontSize: 20,
               fontWeight: FontWeight.w700),
         ),
+        onPressed: () {},
       ),
       backgroundColor: Colors.white,
       body: Stack(

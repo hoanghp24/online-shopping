@@ -8,8 +8,8 @@ class OfferProductModel {
   int? typeId;
   String? name;
   String? detail;
-  String? unitName;
-  String? unitValue;
+  int? unitName;
+  int? unitValue;
   String? nutritionWeight;
   int? price;
   String? image;

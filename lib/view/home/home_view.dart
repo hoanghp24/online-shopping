@@ -5,6 +5,8 @@ import 'package:shop_app/common_widget/home_categories.dart';
 import 'package:shop_app/common_widget/promo_slider.dart';
 import 'package:shop_app/view/explore/explore_detail_view.dart';
 import 'package:shop_app/view/explore/search_view.dart';
+import 'package:shop_app/view/home/best_sale_view.dart';
+import 'package:shop_app/view/home/offer_list_view.dart';
 import 'package:shop_app/view/home/product_details_view.dart';
 import 'package:shop_app/view_model/explore_view_model.dart';
 
@@ -83,6 +85,7 @@ class _HomeViewState extends State<HomeView> {
               const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: PromoSlider(sliders: [
+                    "assets/img/slider1.png",
                     "assets/img/slider2.png",
                     "assets/img/slider3.png",
                     "assets/img/slider4.png",
@@ -118,15 +121,17 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 8),
               SectionView(
                 title: "Sản phẩm bán chạy",
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const BestSalerView());
+                },
               ),
               SizedBox(
-                height: 280,
+                height: 270,
                 child: Obx(
                   () => ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -143,8 +148,8 @@ class _HomeViewState extends State<HomeView> {
                             homeVM.serviceCallHome();
                           },
                           onCart: () {
-                            CartViewModel.serviceCallAddToCart(
-                                pObj.prodId ?? 0, 1, () {});
+                            // CartViewModel.serviceCallAddToCart(
+                            //     pObj.prodId ?? 0, 1, () {});
                           },
                         );
                       }),
@@ -155,7 +160,9 @@ class _HomeViewState extends State<HomeView> {
                 isSale: true,
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const OfferListView());
+                },
               ),
               SizedBox(
                 height: 280,
@@ -163,9 +170,9 @@ class _HomeViewState extends State<HomeView> {
                   () => ListView.builder(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.symmetric(horizontal: 15),
-                      itemCount: homeVM.listArr.length,
+                      itemCount: homeVM.offerArr.length,
                       itemBuilder: (context, index) {
-                        var pObj = homeVM.listArr[index];
+                        var pObj = homeVM.offerArr[index];
 
                         return ProductCell(
                           pObj: pObj,
@@ -177,8 +184,8 @@ class _HomeViewState extends State<HomeView> {
                             homeVM.serviceCallHome();
                           },
                           onCart: () {
-                            CartViewModel.serviceCallAddToCart(
-                                pObj.prodId ?? 0, 1, () {});
+                            // CartViewModel.serviceCallAddToCart(
+                            //     pObj.prodId ?? 0, 1, () {});
                           },
                         );
                       }),

@@ -9,6 +9,7 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle = false,
     this.backgroundColor = Colors.transparent,
     required this.onPressed,
+    this.elevation = 0.5,
   });
 
   final Widget? title;
@@ -16,12 +17,13 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showBackArrow, centerTitle;
   final Color? backgroundColor;
   final VoidCallback onPressed;
+  final double? elevation;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
         backgroundColor: backgroundColor,
-        elevation: 0,
+        elevation: elevation,
         centerTitle: centerTitle,
         automaticallyImplyLeading: false,
         leading: showBackArrow

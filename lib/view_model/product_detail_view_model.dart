@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/common/formatter.dart';
+import 'package:shop_app/common/pricing_calculator.dart';
 import 'package:shop_app/model/image_model.dart';
 import 'package:shop_app/model/nutrition_model.dart';
 import 'package:shop_app/model/offer_product_model.dart';
@@ -23,7 +25,9 @@ class ProductDetailViewMode extends GetxController {
   }
 
   String getPrice() {
-    num totalPrice = (pObj.offerPrice ?? pObj.price ?? 0.0) * qty.value;
+    int discountedPrice = PricingCalculator.calculateDiscountedPrice(
+        pObj.price!, pObj.unitValue!);
+    num totalPrice = discountedPrice * qty.value;
     return Formatter.formatCurrency(totalPrice.toInt());
   }
 
@@ -88,7 +92,11 @@ class ProductDetailViewMode extends GetxController {
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
@@ -101,11 +109,19 @@ class ProductDetailViewMode extends GetxController {
 
       if (resObj[KKey.status] == "1") {
         isFav.value = !isFav.value;
-        Get.snackbar(Globs.appName, resObj[KKey.message]);
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message]);
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 }

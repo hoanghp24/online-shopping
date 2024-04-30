@@ -122,9 +122,7 @@ class _MyOrdersDetailViewState extends State<MyOrdersDetailView> {
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                   itemBuilder: (context, index) {
                     var pObj = detailVM.cartList[index];
-                    return OrderItemRow(
-                      pObj: pObj,
-                    );
+                    return OrderItemRow(pObj: pObj);
                   },
                   itemCount: detailVM.cartList.length),
             ),

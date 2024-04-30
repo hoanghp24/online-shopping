@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:shop_app/view/account/notification_view.dart';
 import 'package:shop_app/view/home/home_view.dart';
 
 import '../../common/color_extension.dart';
@@ -29,7 +30,7 @@ class _MainTabViewState extends State<MainTabView>
     super.initState();
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
-    controller = TabController(length: 4, vsync: this);
+    controller = TabController(length: 5, vsync: this);
     controller?.addListener(() {
       selectTab = controller?.index ?? 0;
 
@@ -51,9 +52,9 @@ class _MainTabViewState extends State<MainTabView>
     return Scaffold(
       body: TabBarView(controller: controller, children: const [
         HomeView(),
-        // ExploreView(),
         MyCartView(),
         FavoritesView(),
+        NotificationListView(),
         AccountView(),
       ]),
       bottomNavigationBar: Container(
@@ -79,6 +80,7 @@ class _MainTabViewState extends State<MainTabView>
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),
+              labelPadding: EdgeInsets.symmetric(horizontal: 8),
               tabs: [
                 Tab(
                   text: 'Trang chủ',
@@ -88,15 +90,6 @@ class _MainTabViewState extends State<MainTabView>
                         selectTab == 0 ? TColor.primary : TColor.secondaryText,
                   ),
                 ),
-                // Tab(
-                //   text: 'Khám phá',
-                //   icon: Image.asset(
-                //     "assets/img/explore_tab.png",
-                //     width: 25,
-                //     height: 25,
-                //     color: selectTab == 1 ? TColor.primary : TColor.secondaryText,
-                //   ),
-                // ),
                 Tab(
                   text: "Giỏ hàng",
                   icon: Icon(
@@ -118,13 +111,23 @@ class _MainTabViewState extends State<MainTabView>
                   ),
                 ),
                 Tab(
-                  text: "Hồ sơ",
+                  text: 'Thông báo',
                   icon: Icon(
                     selectTab == 3
+                        ? Iconsax.notification5
+                        : Iconsax.notification,
+                    color:
+                        selectTab == 3 ? TColor.primary : TColor.secondaryText,
+                  ),
+                ),
+                Tab(
+                  text: "Hồ sơ",
+                  icon: Icon(
+                    selectTab == 4
                         ? Ionicons.person_circle_sharp
                         : Ionicons.person_circle_outline,
                     color:
-                        selectTab == 3 ? TColor.primary : TColor.secondaryText,
+                        selectTab == 4 ? TColor.primary : TColor.secondaryText,
                   ),
                 )
               ]),

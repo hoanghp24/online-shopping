@@ -47,37 +47,65 @@ class AddressViewModel extends GetxController {
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
   void serviceCallUpdate(int addressId, VoidCallback didDone) {
     if (txtName.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter name");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter name");
       return;
     }
 
     if (txtMobile.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter phone");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter phone");
       return;
     }
     if (txtAddressLine.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter address");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter address");
       return;
     }
 
     if (txtCity.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter city");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter city");
       return;
     }
 
     if (txtState.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter state");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter state");
       return;
     }
 
     if (txtPostalCode.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter postal code");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter postal code");
       return;
     }
 
@@ -96,13 +124,21 @@ class AddressViewModel extends GetxController {
       Globs.hideHUD();
 
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message].toString());
 
         didDone();
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
@@ -113,12 +149,20 @@ class AddressViewModel extends GetxController {
         withSuccess: (resObj) async {
       Globs.hideHUD();
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message].toString());
         serviceCallList();
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
@@ -144,31 +188,55 @@ class AddressViewModel extends GetxController {
 
   void serviceCallAdd(VoidCallback didDone) {
     if (txtName.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter name");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter name");
       return;
     }
 
     if (txtMobile.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter phone");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter phone");
       return;
     }
     if (txtAddressLine.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter address");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter address");
       return;
     }
 
     if (txtCity.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter city");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter city");
       return;
     }
 
     if (txtState.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter state");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter state");
       return;
     }
 
     if (txtPostalCode.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter postal code");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter postal code");
       return;
     }
 
@@ -184,12 +252,20 @@ class AddressViewModel extends GetxController {
     }, SVKey.svAddDeliveryAddress, isToken: true, withSuccess: (resObj) async {
       Globs.hideHUD();
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message].toString());
         didDone();
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 }

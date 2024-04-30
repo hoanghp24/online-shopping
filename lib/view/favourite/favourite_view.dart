@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/product_cell.dart';
 import 'package:shop_app/view/home/product_details_view.dart';
 import 'package:shop_app/view_model/cart_view_model.dart';
@@ -21,7 +22,7 @@ class _FavoritesViewState extends State<FavoritesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: TAppBar(
         backgroundColor: Colors.white,
         elevation: 0.5,
         centerTitle: true,
@@ -32,6 +33,7 @@ class _FavoritesViewState extends State<FavoritesView> {
               fontSize: 20,
               fontWeight: FontWeight.w700),
         ),
+        onPressed: () {},
       ),
       backgroundColor: Colors.white,
       body: Stack(
@@ -58,7 +60,10 @@ class _FavoritesViewState extends State<FavoritesView> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, childAspectRatio: 0.7),
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.72,
+                    mainAxisSpacing: 20,
+                  ),
                   itemCount: favVM.listArr.length,
                   itemBuilder: ((context, index) {
                     var pObj = favVM.listArr[index];
@@ -70,8 +75,8 @@ class _FavoritesViewState extends State<FavoritesView> {
                         favVM.serviceCalList();
                       },
                       onCart: () {
-                        CartViewModel.serviceCallAddToCart(
-                            pObj.prodId ?? 0, 1, () {});
+                        // CartViewModel.serviceCallAddToCart(
+                        //     pObj.prodId ?? 0, 1, () {});
                       },
                     );
                   }),

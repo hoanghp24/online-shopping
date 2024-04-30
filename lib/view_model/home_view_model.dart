@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/common/globs.dart';
 import 'package:shop_app/common/service_call.dart';
@@ -11,6 +12,7 @@ class HomeViewModel extends GetxController {
   final RxList<OfferProductModel> bestSellingArr = <OfferProductModel>[].obs;
   final RxList<TypeModel> groceriesArr = <TypeModel>[].obs;
   final RxList<OfferProductModel> listArr = <OfferProductModel>[].obs;
+  final RxList<OfferProductModel> searchListArr = <OfferProductModel>[].obs;
 
   final isLoading = false.obs;
 
@@ -32,6 +34,16 @@ class HomeViewModel extends GetxController {
     carouselCurrentIndex.value = index;
   }
 
+  void searchProducts(String searchText) {
+    searchListArr.clear();
+    if (searchText.isEmpty) {
+      searchListArr.addAll(listArr);
+    } else {
+      searchListArr.addAll(listArr.where((pObj) =>
+          pObj.name!.toLowerCase().contains(searchText.toLowerCase())));
+    }
+  }
+
   //ServiceCall
   void serviceCallHome() {
     // Globs.showHUD();
@@ -42,16 +54,21 @@ class HomeViewModel extends GetxController {
       if (resObj[KKey.status] == "1") {
         var payload = resObj[KKey.payload] as Map? ?? {};
 
-        var offerDataArr = (payload["offer_list"] as List? ?? []).map((oObj) {
-          return OfferProductModel.fromJson(oObj);
-        }).toList();
+        var offerDataArr = (payload["list"] as List? ?? [])
+            .map((oObj) {
+              return OfferProductModel.fromJson(oObj);
+            })
+            .where((pObj) => pObj.unitValue != null && pObj.unitValue! > 0)
+            .toList();
 
         offerArr.value = offerDataArr;
 
-        var bestSellingDataArr =
-            (payload["best_sell_list"] as List? ?? []).map((oObj) {
-          return OfferProductModel.fromJson(oObj);
-        }).toList();
+        var bestSellingDataArr = (payload["list"] as List? ?? [])
+            .map((oObj) {
+              return OfferProductModel.fromJson(oObj);
+            })
+            .where((pObj) => pObj.unitName == 1)
+            .toList();
 
         bestSellingArr.value = bestSellingDataArr;
 
@@ -66,10 +83,16 @@ class HomeViewModel extends GetxController {
         }).toList();
 
         listArr.value = listDataArr;
+
+        searchProducts('');
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 }

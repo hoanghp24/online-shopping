@@ -40,7 +40,11 @@ class ExploreItemViewMode extends GetxController {
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 }

@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shop_app/common/formatter.dart';
+import 'package:shop_app/common/globs.dart';
+import 'package:shop_app/common/pricing_calculator.dart';
 import 'package:shop_app/common_widget/app_bar.dart';
+import 'package:shop_app/common_widget/sale_tag.dart';
 import 'package:shop_app/view/product_reviews/product_reviews.dart';
 
 import '../../common/color_extension.dart';
@@ -23,6 +27,9 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   late ProductDetailViewMode detailVM;
 
+  String selectedSize = "";
+  List<String> sizes = ['S', 'M', 'L', 'XL', 'XXL'];
+
   @override
   void initState() {
     super.initState();
@@ -38,6 +45,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.sizeOf(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -62,6 +70,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                 ),
                 TAppBar(
+                  elevation: 0,
                   backgroundColor: Colors.transparent,
                   showBackArrow: true,
                   onPressed: () => Get.back(),
@@ -98,12 +107,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                     ],
                   ),
-                  Text(
-                    detailVM.pObj.typeName ?? "",
-                    style: const TextStyle(
-                        color: TColor.secondaryText,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      Text(
+                        "${detailVM.pObj.catName!}, ${detailVM.pObj.detail}",
+                        style: const TextStyle(
+                            color: TColor.secondaryText,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(width: 16),
+                      SaleTag(salePercent: detailVM.pObj.unitValue!)
+                    ],
                   ),
                   const SizedBox(height: 15),
                   Row(
@@ -145,15 +161,125 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                       const Spacer(),
                       Obx(
-                        () => Text(
-                          detailVM.getPrice(),
-                          style: const TextStyle(
-                              color: TColor.primaryText,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700),
+                        () => Row(
+                          children: [
+                            Text(
+                              detailVM.getPrice(),
+                              style: const TextStyle(
+                                  color: TColor.primaryText,
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            const SizedBox(width: 16),
+                            Text(
+                              Formatter.formatCurrency(detailVM.pObj.price!),
+                              style: const TextStyle(
+                                  color: TColor.secondaryText,
+                                  fontSize: 18,
+                                  decoration: TextDecoration.lineThrough,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const Divider(
+                    color: Colors.black26,
+                    height: 1,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        "Kích cỡ: ",
+                        style: TextStyle(
+                          color: TColor.primaryText,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Wrap(
+                        children: sizes.map((size) {
+                          return InkWell(
+                            onTap: () {
+                              setState(() {
+                                selectedSize = size;
+                              });
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 5),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 7),
+                              decoration: BoxDecoration(
+                                color: selectedSize == size
+                                    ? TColor.primary
+                                    : Colors.grey.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Text(
+                                size,
+                                style: TextStyle(
+                                  color: selectedSize == size
+                                      ? Colors.white
+                                      : TColor.primaryText,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const Divider(
+                    color: Colors.black26,
+                    height: 1,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => Dialog(
+                          child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Image.asset("assets/img/size.png"))),
+                        ),
+                      );
+                    },
+                    child: const Row(
+                      children: [
+                        Icon(Iconsax.ruler),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "Kiểm tra size của bạn",
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: TColor.primaryText,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
@@ -295,10 +421,23 @@ class _ProductDetailsState extends State<ProductDetails> {
         child: RoundButton(
           title: "Thêm vào giỏ",
           onPressed: () {
+            if (selectedSize.isEmpty) {
+              Get.snackbar(
+                  backgroundColor: Color(0xFF2196F3),
+                  colorText: Colors.white,
+                  Globs.appName,
+                  'Vui lòng chọn kích thước phù hợp');
+              return;
+            }
+
             CartViewModel.serviceCallAddToCart(
-                widget.pObj.prodId ?? 0, detailVM.qty.value, () {
-              Navigator.pop(context);
-            });
+              widget.pObj.prodId ?? 0,
+              detailVM.qty.value,
+              selectedSize, // Chuyển selectedSize vào đây
+              () {
+                Navigator.pop(context);
+              },
+            );
           },
         ),
       ),

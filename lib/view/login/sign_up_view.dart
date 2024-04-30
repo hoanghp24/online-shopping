@@ -28,6 +28,7 @@ class _SignUpViewState extends State<SignUpView> {
       ),
       Scaffold(
         appBar: TAppBar(
+          elevation: 0,
           showBackArrow: true,
           onPressed: () {
             Get.back();

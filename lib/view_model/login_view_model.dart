@@ -27,13 +27,20 @@ class LoginViewModel extends GetxController {
   //ServiceCall
   void serviceCallLogin() {
     if (!GetUtils.isEmail(txtEmail.value.text)) {
-      Get.snackbar(Globs.appName, "Pleaser enter valid email address");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Pleaser enter valid email address");
       return;
     }
 
     if (txtPassword.value.text.length < 6) {
       Get.snackbar(
-          Globs.appName, "Pleaser enter valid password min 6 character");
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Pleaser enter valid password min 6 character");
       return;
     }
 
@@ -55,10 +62,18 @@ class LoginViewModel extends GetxController {
         Get.delete<LoginViewModel>();
         Get.find<SplashViewModel>().goAfterLoginMainTab();
       } else {}
-      Get.snackbar(Globs.appName, resObj["message"].toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          resObj["message"].toString());
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 

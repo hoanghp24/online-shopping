@@ -29,18 +29,29 @@ class SignUpViewModel extends GetxController {
   //ServiceCall
   void serviceCallSignUp() {
     if (txtUsername.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Pleaser enter username");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Pleaser enter username");
       return;
     }
 
     if (!GetUtils.isEmail(txtEmail.value.text)) {
-      Get.snackbar(Globs.appName, "Pleaser enter valid email address");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Pleaser enter valid email address");
       return;
     }
 
     if (txtPassword.value.text.length < 6) {
       Get.snackbar(
-          Globs.appName, "Pleaser enter valid password min 6 character");
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Pleaser enter valid password min 6 character");
       return;
     }
 
@@ -64,10 +75,18 @@ class SignUpViewModel extends GetxController {
         Get.find<SplashViewModel>().goAfterLoginMainTab();
       } else {}
 
-      Get.snackbar(Globs.appName, resObj["message"].toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          resObj["message"].toString());
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 

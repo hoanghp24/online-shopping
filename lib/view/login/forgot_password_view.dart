@@ -28,6 +28,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
       Scaffold(
         appBar: TAppBar(
           showBackArrow: true,
+          elevation: 0,
           onPressed: () {
             Get.back();
           },

@@ -40,8 +40,8 @@ class SectionView extends StatelessWidget {
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                     duration: const Duration(hours: 12),
                     decoration: BoxDecoration(
-                        color: Colors.redAccent,
-                        borderRadius: BorderRadius.circular(10))),
+                        color: const Color(0xFFD73831),
+                        borderRadius: BorderRadius.circular(5))),
             ],
           ),
           TextButton(

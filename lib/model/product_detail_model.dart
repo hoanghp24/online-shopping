@@ -5,11 +5,12 @@ class ProductDetailModel {
   int? typeId;
   int? orderId;
   int? qty;
+  String? size;
   String? name;
   String? image;
   String? detail;
-  String? unitName;
-  String? unitValue;
+  int? unitName;
+  int? unitValue;
   String? nutritionWeight;
   int? price;
   int? itemPrice;
@@ -30,6 +31,8 @@ class ProductDetailModel {
       this.catId,
       this.brandId,
       this.typeId,
+      this.qty,
+      this.size,
       this.name,
       this.detail,
       this.unitName,
@@ -51,6 +54,7 @@ class ProductDetailModel {
     prodId = json['prod_id'];
     orderId = json['order_id'];
     qty = json['qty'];
+    size = json['size'];
     catId = json['cat_id'];
     brandId = json['brand_id'];
     typeId = json['type_id'];
@@ -83,6 +87,7 @@ class ProductDetailModel {
     data['type_id'] = typeId;
     data['order_id'] = orderId;
     data['qty'] = qty;
+    data['size'] = size;
     data['name'] = name;
     data['image'] = image;
     data['detail'] = detail;

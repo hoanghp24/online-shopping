@@ -42,7 +42,7 @@ class _MyOrdersViewState extends State<MyOrdersView> {
               fontWeight: FontWeight.w700),
         ),
         onPressed: () {
-          Get.offAll(const MainTabView());
+          Get.back();
         },
       ),
       backgroundColor: Colors.white,

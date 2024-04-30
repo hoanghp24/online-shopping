@@ -40,7 +40,7 @@ class MyOrderRow extends StatelessWidget {
                     mObj.orderId?.toString() ?? "",
                     style: const TextStyle(
                         color: TColor.primaryText,
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w600),
                   )),
                   Text(
@@ -48,7 +48,7 @@ class MyOrderRow extends StatelessWidget {
                     style: TextStyle(
                         color: getOrderStatusColor(mObj),
                         fontSize: 14,
-                        fontWeight: FontWeight.w600),
+                        fontWeight: FontWeight.w500),
                   )
                 ],
               ),

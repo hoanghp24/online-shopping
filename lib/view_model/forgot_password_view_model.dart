@@ -31,7 +31,11 @@ class ForgotPasswordViewModel extends GetxController {
   //ServiceCall
   void serviceCallRequest({bool isResend = false}) {
     if (!GetUtils.isEmail(txtEmail.value.text)) {
-      Get.snackbar(Globs.appName, "Pleaser enter valid email address");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Pleaser enter valid email address");
       return;
     }
 
@@ -47,17 +51,29 @@ class ForgotPasswordViewModel extends GetxController {
           Get.to(() => const VerificationView());
         }
       } else {
-        Get.snackbar(Globs.appName, resObj["message"].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj["message"].toString());
       }
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
   void serviceCallVerify() {
     if (txtResetCode.value.text.length != 4) {
-      Get.snackbar(Globs.appName, "Pleaser enter valid otp");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Pleaser enter valid otp");
       return;
     }
 
@@ -73,22 +89,37 @@ class ForgotPasswordViewModel extends GetxController {
         forgotResDict = resObj[KKey.payload] as Map? ?? {};
         Get.to(() => const ForgotPasswordSetView());
       } else {
-        Get.snackbar(Globs.appName, resObj["message"].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj["message"].toString());
       }
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
   void serviceCallSetPassword() {
     if (txtNewPassword.value.text.length < 6) {
       Get.snackbar(
-          Globs.appName, "Please enter new password minimum 6 character");
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter new password minimum 6 character");
       return;
     }
     if (txtNewPassword.value.text != txtConfirmPassword.value.text) {
-      Get.snackbar(Globs.appName, "password not match");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "password not match");
       return;
     }
 
@@ -104,13 +135,25 @@ class ForgotPasswordViewModel extends GetxController {
       if (resObj[KKey.status] == "1") {
         Get.to(() => const LogInView());
         Get.delete<ForgotPasswordViewModel>();
-        Get.snackbar(Globs.appName, resObj["message"].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj["message"].toString());
       } else {
-        Get.snackbar(Globs.appName, resObj["message"].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj["message"].toString());
       }
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../common/globs.dart';
 import '../common/service_call.dart';
@@ -36,7 +37,11 @@ class NotificationViewModel extends GetxController {
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
@@ -46,12 +51,23 @@ class NotificationViewModel extends GetxController {
         withSuccess: (resObj) async {
       Globs.hideHUD();
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        // Get.snackbar(
+        //     backgroundColor: Color(0xFF2196F3),
+        //     colorText: Colors.white,
+        //     Globs.appName,
+        //     resObj[KKey.message].toString());
         serviceCallList();
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
+
+  int get notificationCount =>
+      listArr.where((notification) => notification.isRead == 1).length;
 }

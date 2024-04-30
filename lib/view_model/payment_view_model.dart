@@ -44,7 +44,11 @@ class PaymentViewModel extends GetxController {
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
@@ -55,12 +59,20 @@ class PaymentViewModel extends GetxController {
         isToken: true, withSuccess: (resObj) async {
       Globs.hideHUD();
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message].toString());
         serviceCallList();
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
@@ -80,21 +92,37 @@ class PaymentViewModel extends GetxController {
 
   void serviceCallAdd(VoidCallback didDone) {
     if (txtName.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter name");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter name");
       return;
     }
 
     if (txtCardNumber.value.text.length != 16) {
-      Get.snackbar(Globs.appName, "Please enter valid card number");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter valid card number");
       return;
     }
     if (txtMonth.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter card month");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter card month");
       return;
     }
 
     if (txtYear.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter card year");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter card year");
       return;
     }
 
@@ -107,12 +135,20 @@ class PaymentViewModel extends GetxController {
     }, SVKey.svAddPaymentMethod, isToken: true, withSuccess: (resObj) async {
       Globs.hideHUD();
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message].toString());
         didDone();
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 }

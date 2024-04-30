@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shop_app/common/color_extension.dart';
 import 'package:shop_app/common/formatter.dart';
+import 'package:shop_app/common/pricing_calculator.dart';
+import 'package:shop_app/common_widget/sale_tag.dart';
 
 import '../model/offer_product_model.dart';
 
@@ -23,6 +25,8 @@ class ProductCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int discountedPrice = PricingCalculator.calculateDiscountedPrice(
+        pObj.price!, pObj.unitValue!);
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -37,28 +41,36 @@ class ProductCell extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CachedNetworkImage(
-              imageUrl: pObj.image ?? "",
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(
-                  color: TColor.primary,
-                ),
-              ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-              width: double.infinity,
-              height: 180,
-              fit: BoxFit.cover,
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
+            Stack(
+              children: [
+                CachedNetworkImage(
+                  imageUrl: pObj.image ?? "",
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(
+                      color: TColor.primary,
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  width: double.infinity,
+                  height: 180,
+                  fit: BoxFit.cover,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15)),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Positioned(
+                    top: 12,
+                    left: 5,
+                    child: SaleTag(salePercent: pObj.unitValue!)),
+              ],
             ),
             const SizedBox(height: 8),
             Padding(
@@ -75,38 +87,32 @@ class ProductCell extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 8),
                   Text(
-                    "${pObj.catName}",
+                    "${pObj.detail}",
                     style: const TextStyle(
                         color: TColor.secondaryText,
                         fontSize: 14,
                         fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 8),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        Formatter.formatCurrency(
-                            pObj.offerPrice ?? pObj.price!),
+                        Formatter.formatCurrency(discountedPrice),
                         style: const TextStyle(
                             color: TColor.primaryText,
                             fontSize: 18,
                             fontWeight: FontWeight.w600),
                       ),
-                      InkWell(
-                        onTap: onCart,
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: TColor.primary,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          alignment: Alignment.center,
-                          child: const Icon(Iconsax.add, color: Colors.white),
-                        ),
+                      const SizedBox(width: 8),
+                      Text(
+                        Formatter.formatCurrency(pObj.price!),
+                        style: const TextStyle(
+                            color: TColor.secondaryText,
+                            fontSize: 15,
+                            decoration: TextDecoration.lineThrough,
+                            fontWeight: FontWeight.w500),
                       ),
                     ],
                   )

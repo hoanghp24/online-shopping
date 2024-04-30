@@ -33,16 +33,28 @@ class MyDetailViewModel extends GetxController {
 
   void serviceCallUpdate(VoidCallback didDone) {
     if (txtName.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter name");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter name");
       return;
     }
 
     if (txtMobile.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter phone");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter phone");
       return;
     }
     if (txtUsername.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter username");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter username");
       return;
     }
 
@@ -56,7 +68,11 @@ class MyDetailViewModel extends GetxController {
       Globs.hideHUD();
 
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message].toString());
         var payload = resObj[KKey.payload] as Map? ?? {};
 
         Globs.udSet(payload, Globs.userPayload);
@@ -66,23 +82,38 @@ class MyDetailViewModel extends GetxController {
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 
   void serviceCallSetPassword(VoidCallback didDone) {
     if (txtCurrentPassword.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Please enter current password");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter current password");
       return;
     }
 
     if (txtNewPassword.value.text.length < 6) {
       Get.snackbar(
-          Globs.appName, "Please enter new password minimum 6 character");
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "Please enter new password minimum 6 character");
       return;
     }
     if (txtNewPassword.value.text != txtConfirmPassword.value.text) {
-      Get.snackbar(Globs.appName, "password not match");
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          "password not match");
       return;
     }
 
@@ -94,12 +125,20 @@ class MyDetailViewModel extends GetxController {
       Globs.hideHUD();
 
       if (resObj[KKey.status] == "1") {
-        Get.snackbar(Globs.appName, resObj[KKey.message].toString());
+        Get.snackbar(
+            backgroundColor: Color(0xFF2196F3),
+            colorText: Colors.white,
+            Globs.appName,
+            resObj[KKey.message].toString());
         didDone();
       } else {}
     }, failure: (err) async {
       Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
+      Get.snackbar(
+          backgroundColor: Color(0xFF2196F3),
+          colorText: Colors.white,
+          Globs.appName,
+          err.toString());
     });
   }
 

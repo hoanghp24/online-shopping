@@ -28,7 +28,7 @@ class _LogInViewState extends State<LogInView> {
             width: media.width, height: media.height, fit: BoxFit.cover),
       ),
       Scaffold(
-        appBar: TAppBar(onPressed: () {}),
+        appBar: TAppBar(onPressed: () {}, elevation: 0,),
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: SingleChildScrollView(
