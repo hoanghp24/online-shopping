@@ -5,10 +5,8 @@ import 'package:shop_app/common_widget/product_cell.dart';
 
 import '../../common/color_extension.dart';
 import '../../model/explore_category_model.dart';
-import '../../view_model/cart_view_model.dart';
 import '../../view_model/explore_item_view_model.dart';
 import '../home/product_details_view.dart';
-import 'filter_view.dart';
 
 class ExploreDetailView extends StatefulWidget {
   final ExploreCategoryModel eObj;

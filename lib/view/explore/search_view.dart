@@ -4,11 +4,9 @@ import 'package:iconsax/iconsax.dart';
 import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/product_cell.dart';
 import 'package:shop_app/view/home/product_details_view.dart';
-import 'package:shop_app/view_model/cart_view_model.dart';
 import 'package:shop_app/view_model/home_view_model.dart';
 
 import '../../common/color_extension.dart';
-import 'filter_view.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});

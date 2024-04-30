@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shop_app/common/color_extension.dart';
 import 'package:shop_app/common/globs.dart';
 import 'package:shop_app/common/service_call.dart';
 
@@ -39,7 +38,7 @@ class FavoriteViewModel extends GetxController {
     }, failure: (err) async {
       Globs.hideHUD();
       Get.snackbar(
-          backgroundColor: Color(0xFF2196F3),
+          backgroundColor: const Color(0xFF2196F3),
           colorText: Colors.white,
           Globs.appName,
           err.toString());
@@ -56,7 +55,7 @@ class FavoriteViewModel extends GetxController {
       if (resObj[KKey.status] == "1") {
         listArr.removeAt(index);
         Get.snackbar(
-            backgroundColor: Color(0xFF2196F3),
+            backgroundColor: const Color(0xFF2196F3),
             colorText: Colors.white,
             Globs.appName,
             resObj[KKey.message]);
@@ -64,7 +63,7 @@ class FavoriteViewModel extends GetxController {
     }, failure: (err) async {
       Globs.hideHUD();
       Get.snackbar(
-          backgroundColor: Color(0xFF2196F3),
+          backgroundColor: const Color(0xFF2196F3),
           colorText: Colors.white,
           Globs.appName,
           err.toString());

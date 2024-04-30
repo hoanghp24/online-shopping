@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/common/color_extension.dart';
 import 'package:shop_app/common/formatter.dart';
-import 'package:shop_app/model/cart_item_model.dart';
 import 'package:shop_app/model/product_detail_model.dart';
 
 class OrderItemRow extends StatelessWidget {

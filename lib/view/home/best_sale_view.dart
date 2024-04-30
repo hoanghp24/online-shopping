@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/product_cell.dart';
-import 'package:shop_app/model/product_detail_model.dart';
 import 'package:shop_app/view_model/explore_view_model.dart';
 import 'package:shop_app/view_model/home_view_model.dart';
 
 import '../../common/color_extension.dart';
-import '../../model/explore_category_model.dart';
-import '../../view_model/cart_view_model.dart';
-import '../../view_model/explore_item_view_model.dart';
 import '../home/product_details_view.dart';
 
 class BestSalerView extends StatefulWidget {

@@ -13,7 +13,6 @@ import 'package:shop_app/view_model/explore_view_model.dart';
 import '../../common/color_extension.dart';
 import '../../common_widget/product_cell.dart';
 import '../../common_widget/section_view.dart';
-import '../../view_model/cart_view_model.dart';
 import '../../view_model/home_view_model.dart';
 
 class HomeView extends StatefulWidget {
@@ -37,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.sizeOf(context);
+    MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

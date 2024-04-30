@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:shop_app/common/formatter.dart';
 import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/view/my_cart/checkout_view.dart';
 

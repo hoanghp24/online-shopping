@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/common/color_extension.dart';
-import 'package:shop_app/common_widget/rounded_image.dart';
 import 'package:shop_app/model/explore_category_model.dart';
 
 class HomeCategories extends StatelessWidget {

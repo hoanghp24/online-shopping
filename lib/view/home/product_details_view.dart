@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shop_app/common/formatter.dart';
 import 'package:shop_app/common/globs.dart';
-import 'package:shop_app/common/pricing_calculator.dart';
 import 'package:shop_app/common_widget/app_bar.dart';
 import 'package:shop_app/common_widget/sale_tag.dart';
 import 'package:shop_app/view/product_reviews/product_reviews.dart';
@@ -398,9 +397,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             Icons.star,
                             color: Color(0xffF3603F),
                           ),
-                          onRatingUpdate: (rating) {
-                            print(rating);
-                          },
+                          onRatingUpdate: (rating) {},
                         ),
                       ),
                       IconButton(
@@ -423,7 +420,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           onPressed: () {
             if (selectedSize.isEmpty) {
               Get.snackbar(
-                  backgroundColor: Color(0xFF2196F3),
+                  backgroundColor: const Color(0xFF2196F3),
                   colorText: Colors.white,
                   Globs.appName,
                   'Vui lòng chọn kích thước phù hợp');
